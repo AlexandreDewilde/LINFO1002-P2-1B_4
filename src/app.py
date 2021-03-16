@@ -4,7 +4,6 @@ from flask import render_template
 from config import DEBUG
 
 
-
 app = Flask(__name__)
 
 
@@ -12,8 +11,6 @@ app = Flask(__name__)
 @app.route("/index")
 def index():
     return render_template("index.html")
-
-
 
 
 if __name__ == "__main__":
