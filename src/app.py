@@ -1,20 +1,20 @@
 from flask import Flask
+from flask import render_template
+
+from config import DEBUG
+
 
 
 app = Flask(__name__)
-
-# Set to false in production
-DEBUG = True
 
 
 @app.route("/")
 @app.route("/index")
 def index():
-    return "<h1>Welcome !</h1>"
+    return render_template("index.html")
 
 
 
 
 if __name__ == "__main__":
-
     app.run(debug=DEBUG)
