@@ -1,10 +1,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-    <title>Home</title>
+    <title>Statistique</title>
 </head>
 <body>
-    <h2>Welcome !</h2>
+    <header>
+        <ul class="navbar">
+            <li>
+                <a href=""><h1>Statistique</h1></a>
+            </li>
+            <li>
+                <a href="/">Menu</a>
+            </li>
+            <li>
+                <a href="">About</a>
+            </li>
+        </ul>
+    </header>
 </body>
 </html>
