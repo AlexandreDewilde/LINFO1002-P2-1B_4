@@ -1,19 +1,19 @@
 body {
     margin: 0;
     padding: 0;
-    color: black;
-    font-family: 'Courier New';
-    background-color: white;
 }
 
 a {
     text-decoration: none;
-    color: black;
 }
 
 h1 {
     font-size: 1.3em;
     letter-spacing: 1.2;
+}
+
+#logo {
+    width: 60px;
 }
 
 .navbar {

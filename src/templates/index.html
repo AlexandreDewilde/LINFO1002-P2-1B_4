@@ -2,6 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" id="base-stylesheet" href="{{ url_for('static', filename='css/light.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <title>Statistique</title>
 </head>
@@ -9,7 +10,7 @@
     <header>
         <ul class="navbar">
             <li>
-                <a href=""><h1>Statistique</h1></a>
+                <a href="/"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" id="logo"/></a>
             </li>
             <li>
                 <a href="/">Menu</a>
@@ -17,7 +18,16 @@
             <li>
                 <a href="">About</a>
             </li>
+            <li>
+                <input type="checkbox" onclick="toggleTheme()">
+            </li>
         </ul>
     </header>
+    <section>
+        <canvas id="death-chart-moon-cycle" width="100" height="100"></canvas>
+    </section>
 </body>
+<script src="/static/js/base.js"></script>
+<script src="/static/chartjs/Chart.min.js"></script>
+<script src="/static/js/index.js"></script>
 </html>
