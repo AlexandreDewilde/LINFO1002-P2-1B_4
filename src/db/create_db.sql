@@ -9,21 +9,15 @@ CREATE TABLE animaux(
     FOREIGN KEY(famille_id) REFERENCES familles(id)
 );
 
-
-
 CREATE TABLE familles(
     id INT PRIMARY KEY,
     nom TEXT NOT NULL        
 );
 
-
-
 CREATE TABLE types(
     id INT PRIMARY KEY,
     type TEXT NOT NULL            
 );
-
-
 
 CREATE TABLE animaux_types(
     animal_id INT NOT NULL,
@@ -34,8 +28,6 @@ CREATE TABLE animaux_types(
     PRIMARY KEY(animal_id, type_id)
 );
 
-
-
 CREATE TABLE velages(
     id INT PRIMARY KEY,
     mere_id INT NOT NULL,
@@ -45,7 +37,6 @@ CREATE TABLE velages(
     FOREIGN KEY(mere_id) REFERENCES animaux(id)
 );
 
-
 CREATE TABLE animaux_velages(
     animal_id INT NOT NULL,
     velage_id NOT NULL,
@@ -54,13 +45,10 @@ CREATE TABLE animaux_velages(
     PRIMARY KEY(animal_id, velage_id)
 );
 
-
 CREATE TABLE complications(
     id INT PRIMARY KEY,
     complication TEXT NOT NULL
 );
-
-
 
 CREATE TABLE velages_complications(
     velage_id INT NOT NULL,
