@@ -1,0 +1,1 @@
+let ctxBirthChartMoon = document.getElementById('birth-chart-moon-cycle').getContext('2d');

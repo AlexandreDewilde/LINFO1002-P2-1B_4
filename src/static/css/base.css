@@ -12,6 +12,10 @@ h1 {
     letter-spacing: 1.2;
 }
 
+h2 {
+    margin: 20px;
+}
+
 #logo {
     width: 60px;
 }
