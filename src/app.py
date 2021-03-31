@@ -1,5 +1,6 @@
 import sqlite3
 import os
+import pathlib
 
 from flask import Flask
 from flask import render_template, redirect, url_for
@@ -11,7 +12,7 @@ from birth_moon import birth_moon
 
 app = Flask(__name__)
 
-db = DB("./db/database.db")
+db = DB(os.path.join(pathlib.Path(__file__).parent.absolute(), "db/database.db"))
 
 @app.route("/")
 @app.route("/index")
@@ -26,4 +27,5 @@ def favicon():
 
 
 if __name__ == "__main__":
+    print(len(db.get_all_animals_familly_name()))
     app.run(debug=DEBUG)
