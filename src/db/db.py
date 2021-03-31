@@ -11,7 +11,7 @@ class DB:
         """
         Create the connexion to the database
         """
-        self.db = sqlite3.connect(self.database_name)
+        self.db = sqlite3.connect(self.database_name, check_same_thread=False)
 
     
     def get_all_velages(self):

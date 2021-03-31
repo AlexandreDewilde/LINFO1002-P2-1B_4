@@ -28,7 +28,7 @@ const setCookie = (name, value, expiration) => {
 
 
 
-theme = getCookie("theme");
+let theme = getCookie("theme");
 
 if (theme != null) {
     styleTag = document.getElementById("base-stylesheet");

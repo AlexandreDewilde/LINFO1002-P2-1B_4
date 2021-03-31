@@ -6,6 +6,7 @@ from flask import render_template, redirect, url_for
 
 from config import DEBUG
 from db.db import DB
+from birth_moon import birth_moon
 
 
 app = Flask(__name__)
@@ -15,7 +16,7 @@ db = DB("./db/database.db")
 @app.route("/")
 @app.route("/index")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", birth_moon=birth_moon(db.get_all_births()))
 
 
 @app.route('/favicon.ico')
