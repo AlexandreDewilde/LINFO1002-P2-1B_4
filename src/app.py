@@ -27,5 +27,4 @@ def favicon():
 
 
 if __name__ == "__main__":
-    print(len(db.get_all_animals_familly_name()))
     app.run(debug=DEBUG)

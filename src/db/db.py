@@ -3,7 +3,6 @@ import sqlite3
 
 class DB:
     def __init__(self, database_name):
-        print(database_name)
         self.database_name = database_name
         self.connect()
 
@@ -31,13 +30,13 @@ class DB:
         with self.db as cursor:
             return cursor.execute(req).fetchall()
 
-    #def get_all_premature_death_birth(self):
-    #     """
+    def get_all_premature_death_birth(self):
+        """
 
-    #     """
-    #     req = "SELECT date FROM velages, animaux WHERE animaux.mort_ne == 1 AND animaux.id == velages.id"
-    #     with self.db as cursor:
-    #         return cursor.execute(req).fetchall()
+        """
+        req = "SELECT date FROM velages, animaux WHERE animaux.mort_ne == 1 AND animaux.id == velages.id"
+        with self.db as cursor:
+            return cursor.execute(req).fetchall()
 
 
     def get_all_animals_familly_name(self):
@@ -45,8 +44,8 @@ class DB:
         with self.db as cursor:
             return cursor.execute(req).fetchall()
     
-    # def get_all_animals_with_father_id(self):
-    #     req = "SELECT id, mort_ne, pere_id FROM animaux, velages WHERE animaux.id == velages.id"
-    #     with self.db as cursor:
-    #         return cursor.execute(req).fetchall()
+    def get_all_animals_with_father_id(self):
+        req = "SELECT id, mort_ne, pere_id FROM animaux, velages WHERE animaux.id == velages.id"
+        with self.db as cursor:
+            return cursor.execute(req).fetchall()
 
