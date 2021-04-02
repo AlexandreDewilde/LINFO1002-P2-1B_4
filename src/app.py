@@ -29,6 +29,10 @@ def about():
 def favicon():
     return redirect(url_for('static', filename='images/favicon.png'))
 
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("404.html"), 404
+
 
 
 if __name__ == "__main__":
