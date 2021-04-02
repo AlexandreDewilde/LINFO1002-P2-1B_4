@@ -13,28 +13,21 @@ class DB:
         """
         self.db = sqlite3.connect(self.database_name, check_same_thread=False)
 
-    
-    def get_all_velages(self):
-        """
-        Get all rows from velages tables
-        """
-        req = "SELECT * FROM velages"
-        with self.db as cursor:
-            return cursor.execute(req).fetchall()
 
     def get_all_births(self):
         """
-        Get all rows from velages tables
+        Get all birthdates from velages tables
         """
         req = "SELECT date FROM velages"
         with self.db as cursor:
             return cursor.execute(req).fetchall()
 
+
     def get_all_premature_death_birth(self):
         """
-
+        Get all birthdates of premature deaths animals
         """
-        req = "SELECT * FROM animaux, animaux_velages, velages_complications, velages WHERE animaux.mort_ne == 1 AND animaux.id == animaux_velages.animal_id AND animaux_velages.velage_id == velages_complications.velage_id AND velages_complications.complication_id == 6 AND velages.id == animaux_velages.animal_id"
+        req = "SELECT date FROM animaux, animaux_velages, velages_complications, velages WHERE animaux.mort_ne == 1 AND animaux.id == animaux_velages.animal_id AND animaux_velages.velage_id == velages_complications.velage_id AND velages_complications.complication_id == 6 AND velages.id == animaux_velages.animal_id"
         with self.db as cursor:
             return cursor.execute(req).fetchall()
 

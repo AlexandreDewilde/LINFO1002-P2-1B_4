@@ -20,6 +20,11 @@ def index():
     return render_template("index.html", birth_moon=birth_moon(db.get_all_births()))
 
 
+@app.route('/about')
+def about():
+    return render_template("about.html")
+
+
 @app.route('/favicon.ico')
 def favicon():
     return redirect(url_for('static', filename='images/favicon.png'))
