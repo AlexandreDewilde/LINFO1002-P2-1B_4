@@ -7,23 +7,29 @@
     <title>Statistique</title>
 </head>
 <body>
-    <header>
-        <ul class="navbar">
-            <li>
-                <a href="/"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" id="logo"/></a>
-            </li>
-            <li>
-                <a href="/">Menu</a>
-            </li>
-            <li>
-                <a href="">About</a>
-            </li>
-            <li>
-                <input type="checkbox" onclick="toggleTheme()" id="checkbox-theme">
-            </li>
-        </ul>
-    </header>
-    <section>
+    {% include "header.html" %}
+    <section class="cards">
+        <section class="card">
+            <a href="#birth-moon-section">
+                <img class="card-picture" src="/static/images/moon.jpg" alt="moon pictures">
+                <div class="card-description">
+                    <span class="card-title">Figure du cycle lunaire</span>
+                    <span class="card-description">Un graphique des naissances en fonction du cycle lunaire</span>
+                </div>  
+            </a>
+        </section>
+        <section class="card">
+            <a href="#">
+                <img class="card-picture" src="/static/images/moon.jpg" alt="moon pictures">
+                <div class="card-description">
+                    <span class="card-title">Figure du cycle lunaire</span>
+                    <span class="card-description">Un graphique des naissances en fonction du cycle lunaire</span>
+                </div>  
+            </a>
+        </section>
+
+    </section>
+    <section id="birth-moon-section">
         <h2>Naissance par cycle lunaire</h2>
         <div class="chart-container">
             <canvas id="birth-chart-moon-cycle" with="100%" height="100%"></canvas>
