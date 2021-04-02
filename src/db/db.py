@@ -40,7 +40,7 @@ class DB:
 
 
     def get_all_animals_familly_name(self):
-        req = "SELECT * FROM animaux, familles WHERE familles.id == animaux.famille_id"
+        req = "SELECT * FROM animaux, animaux_velages, velages_complications, velages, familles WHERE animaux.mort_ne == 1 AND animaux.id == animaux_velages.animal_id AND animaux_velages.velage_id == velages_complications.velage_id AND velages_complications.complication_id == 6 AND velages.id == animaux_velages.animal_id AND animaux.famille_id == familles.id"
         with self.db as cursor:
             return cursor.execute(req).fetchall()
     
