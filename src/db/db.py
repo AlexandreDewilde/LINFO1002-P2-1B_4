@@ -34,7 +34,7 @@ class DB:
         """
 
         """
-        req = "SELECT date FROM velages, animaux WHERE animaux.mort_ne == 1 AND animaux.id == velages.id"
+        req = "SELECT * FROM animaux, animaux_velages, velages_complications, velages WHERE animaux.mort_ne == 1 AND animaux.id == animaux_velages.animal_id AND animaux_velages.velage_id == velages_complications.velage_id AND velages_complications.complication_id == 6 AND velages.id == animaux_velages.animal_id"
         with self.db as cursor:
             return cursor.execute(req).fetchall()
 
@@ -44,8 +44,4 @@ class DB:
         with self.db as cursor:
             return cursor.execute(req).fetchall()
     
-    def get_all_animals_with_father_id(self):
-        req = "SELECT id, mort_ne, pere_id FROM animaux, velages WHERE animaux.id == velages.id"
-        with self.db as cursor:
-            return cursor.execute(req).fetchall()
 
