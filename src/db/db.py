@@ -126,7 +126,7 @@ class DB:
             elif type == 'les_animaux_qui_sont_deces_prematures':
                 for famille in labels:
                     les_animaux_qui_sont_deces_prematures += [self.nmb_deces_prematures().get(famille, 0)]
-                return les_animaux_qui_sont_deces
+                return les_animaux_qui_sont_deces_prematures
             #print(les_animaux_vivants)
             #print(les_animaux_qui_sont_morts)
             #print(les_animaux_qui_sont_deces_prematures)
