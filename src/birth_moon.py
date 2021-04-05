@@ -1,7 +1,7 @@
 import datetime
 
 
-
+# TODO some changes needed this calcul is to imprecised maybe use a library?
 moon_day = lambda date_d: int((datetime.datetime(2021,2,27) - date_d).days % 29.530588853)
 
 def birth_moon(data):
