@@ -1,5 +1,6 @@
 :root {
     --chart-width: 100%;
+    --chart-height: 50vh;
 }
 
 
@@ -82,13 +83,18 @@
 
 .charts-container {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     width: 100%;
 }
 
+.chart-container {
+    height: var(--chart-height);
+}
 
 .chart {
     width: var(--chart-width);
+    
 }
 
 .chart-title {

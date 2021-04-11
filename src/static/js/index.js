@@ -1,12 +1,25 @@
 let ctxBirthChartMoon = document.getElementById('birth-chart-moon-cycle').getContext('2d');
+
+// From chart js documentation https://www.chartjs.org/docs/2.7.2/general/responsive.html
+function resizeCharts() {
+  for (var id in Chart.instances) {
+    Chart.instances[id].resize()
+  }
+}
+
 const changeChartsDisposition = (dispositionName) => {
   if (dispositionName === "list")
   {
     document.documentElement.style.setProperty("--chart-width", "100%");
+    document.documentElement.style.setProperty("--chart-height", "50vh");
+    // This function is needed to resized the chart
+    resizeCharts();
   }
   else if (dispositionName === "grid")
   {
-    document.documentElement.style.setProperty("--chart-width", "50%");
+    document.documentElement.style.setProperty("--chart-width", "48%");
+    document.documentElement.style.setProperty("--chart-height", "40vh");
+    resizeCharts();
   }
 }
 
@@ -15,22 +28,30 @@ document.getElementById("list-icon").addEventListener("click", () => changeChart
 document.getElementById("grid-icon").addEventListener("click", () => changeChartsDisposition("grid"));
 
 
-
 const plotBirthChartMoon = (data, label) => {
 
     new Chart(ctxBirthChartMoon, {
         type: 'bar',
-        responsive: false,
-        maintainAspectRatio : false,
         data: {
             labels: label,
             datasets: [{
                 label: 'Naissances par jour du cycle lunaire',
                 data: data,
-                backgroundColor: "#C0756F",
-                borderColor: "#C0756F",
+                backgroundColor: "#388E8E",
+                borderColor: "#388E8E",
                 borderWidth: 1
             }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
         }
     });
 }
