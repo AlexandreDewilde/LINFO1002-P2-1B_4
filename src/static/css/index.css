@@ -18,12 +18,12 @@
     margin: 10px;
     min-width: 300px;
     width: 20vw;
-    box-shadow: 0 0 10px;
+    box-shadow: 0 0 2px;
 }
 
 
 .card:hover {
-    box-shadow: 0 0 10px;
+    box-shadow: 0 0 5px;
 }
 
 
@@ -89,4 +89,8 @@
 
 .chart {
     width: var(--chart-width);
+}
+
+.chart-title {
+    text-align: center;
 }
