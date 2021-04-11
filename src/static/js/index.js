@@ -16,14 +16,14 @@ document.getElementById("grid-icon").addEventListener("click", () => changeChart
 
 
 
-const plotBirthChartMoon = (data) => {
+const plotBirthChartMoon = (data, label) => {
 
     new Chart(ctxBirthChartMoon, {
         type: 'bar',
         responsive: false,
         maintainAspectRatio : false,
         data: {
-            labels: [...Array(30).keys()],
+            labels: label,
             datasets: [{
                 label: 'Naissances par jour du cycle lunaire',
                 data: data,

@@ -70,7 +70,7 @@
 <script src="/static/chartjs/Chart.min.js"></script>
 <script src="/static/js/index.js"></script>
 <script>
-    plotBirthChartMoon({{ birth_moon }});
+    plotBirthChartMoon({{ birth_moon }}, {{birth_moon_label | safe }});
 </script>
 <script>
     stacked_bar_plot({{listes_familles | safe}}, {{Vivants | safe}},{{Morts_nés | safe}},{{Décès | safe}});

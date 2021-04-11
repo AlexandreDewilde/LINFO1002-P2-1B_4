@@ -18,7 +18,7 @@ class DB:
         """
         Get all birthdates from velages tables
         """
-        req = "SELECT date FROM velages"
+        req = "SELECT date FROM animaux, animaux_velages, velages WHERE animaux.id = animaux_velages.animal_id AND velages.id = animaux_velages.velage_id"
         with self.db as cursor:
             return cursor.execute(req).fetchall()
 
