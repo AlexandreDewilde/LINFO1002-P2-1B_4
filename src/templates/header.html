@@ -1,16 +1,18 @@
 <header>
-    <ul class="navbar">
-        <li>
-            <a href="/"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" id="logo"/></a>
-        </li>
-        <li>
-            <a href="/">Menu</a>
-        </li>
-        <li>
-            <a href="/about">About</a>
-        </li>
-        <li>
-            <i class="fa fa-moon-o" id="theme-icon" onclick="toggleTheme()"></i>
-        </li>
-    </ul>
+    <div class="navbar">
+        <a href="/"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" id="logo"/></a>
+        <label class="fa fa-bars" for="hamburger-menu" id="label-hamburger"></label>
+        <input id="hamburger-menu" type="checkbox">
+        <ul class="menu">
+            <li>
+                <a href="/">Menu</a>
+            </li>
+            <li>
+                <a href="/about">About</a>
+            </li>
+            <li>
+                <i class="fa fa-moon-o" id="theme-icon" onclick="toggleTheme()"></i>
+            </li>
+        </ul>
+    </div>
 </header>
