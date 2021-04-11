@@ -2,13 +2,13 @@ toggleTheme = () => {
     styleTag = document.getElementById("base-stylesheet");
     if (styleTag.href.includes("/static/css/light.css")) {
         styleTag.href = "/static/css/darkmode.css";
+        document.getElementById("theme-icon").className = "fa fa-sun-o"
         setCookie("theme", "dark", "Fri, 31 Dec 9999 23:59:59 GMT");
-        document.getElementById("checkbox-theme").checked = true;
     } 
     else {
         styleTag.href = "/static/css/light.css";
+        document.getElementById("theme-icon").className = "fa fa-moon-o"
         setCookie("theme", "light", "Fri, 31 Dec 9999 23:59:59 GMT");
-        document.getElementById("checkbox-theme").checked = false;
     }
 };
 
@@ -35,11 +35,11 @@ if (theme != null) {
     if (theme === "light" && !styleTag.href.includes("/static/css/light.css"))
     {
         styleTag.href = "/static/css/light.css";
-        document.getElementById("checkbox-theme").checked = false;
+        document.getElementById("theme-icon").className = "fa fa-moon-o"
     }
     else if (theme === "dark" && !styleTag.href.includes("/static/css/darkmode.css"))
     {
         styleTag.href = "/static/css/darkmode.css";
-        document.getElementById("checkbox-theme").checked = true;
+        document.getElementById("theme-icon").className = "fa fa-sun-o"
     }
 }

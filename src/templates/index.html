@@ -1,44 +1,70 @@
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     <link rel="stylesheet" id="base-stylesheet" href="{{ url_for('static', filename='css/light.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Statistique</title>
 </head>
 <body>
+
     {% include "header.html" %}
+
     <section class="cards">
-        <section class="card">
-            <a href="#birth-moon-section">
+        <a href="#birth-moon-section">
+            <section class="card">
                 <img class="card-picture" src="/static/images/moon.jpg" alt="moon pictures">
                 <div class="card-description">
                     <span class="card-title">Figure du cycle lunaire</span>
-                    <span class="card-description">Un graphique des naissances en fonction du cycle lunaire</span>
+                    <span class="card-sub-description">Un graphique des naissances en fonction du cycle lunaire</span>
                 </div>  
-            </a>
-        </section>
-        <section class="card">
-            <a href="#">
+            </section>
+        </a>
+
+        <a href="#birth-moon-section">
+            <section class="card">
                 <img class="card-picture" src="/static/images/moon.jpg" alt="moon pictures">
                 <div class="card-description">
                     <span class="card-title">Figure du cycle lunaire</span>
-                    <span class="card-description">Un graphique des naissances en fonction du cycle lunaire</span>
+                    <span class="card-sub-description">Un graphique des naissances en fonction du cycle lunaire</span>
                 </div>  
-            </a>
-        </section>
+            </section>
+        </a>
+
+        <a href="#birth-moon-section">
+            <section class="card">
+                <img class="card-picture" src="/static/images/moon.jpg" alt="moon pictures">
+                <div class="card-description">
+                    <span class="card-title">Figure du cycle lunaire</span>
+                    <span class="card-sub-description">Un graphique des naissances en fonction du cycle lunaire</span>
+                </div>  
+            </section>
+        </a>
 
     </section>
-    <section id="birth-moon-section">
-        <h2>Naissance par cycle lunaire</h2>
-        <div class="chart-container">
-            <canvas id="birth-chart-moon-cycle" with="100%" height="100%"></canvas>
+
+    <section class="filter-section">
+        <h3 id="filter-title">Filtre</h3>
+        <i class="fa fa-bars" id="list-icon"></i>
+        <i class="fa fa-th-large" id="grid-icon"></i>
+    </section>
+
+    <section class="charts-container">
+        <section id="birth-moon-section" class="chart">
+            <h2>Naissance par cycle lunaire</h2>
+            <div class="chart-container chart-container-list">
+                <canvas id="birth-chart-moon-cycle" with="100%" height="100%"></canvas>
+            </div>
+        </section>
+
+        <div class="myChartDiv">
+        <canvas id="myChart" width="600" height="400"></canvas>
         </div>
     </section>
-    <div class="myChartDiv">
-      <canvas id="myChart" width="600" height="400"></canvas>
-    </div>
+
 </body>
+
 <script src="/static/js/base.js"></script>
 <script src="/static/chartjs/Chart.min.js"></script>
 <script src="/static/js/index.js"></script>
@@ -48,4 +74,5 @@
 <script>
     stacked_bar_plot({{listes_familles | safe}}, {{Vivants | safe}},{{Morts_nés | safe}},{{Décès | safe}});
 </script>
+
 </html>

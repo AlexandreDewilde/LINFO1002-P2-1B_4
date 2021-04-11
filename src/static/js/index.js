@@ -1,12 +1,27 @@
 let ctxBirthChartMoon = document.getElementById('birth-chart-moon-cycle').getContext('2d');
+const changeChartsDisposition = (dispositionName) => {
+  if (dispositionName === "list")
+  {
+    document.documentElement.style.setProperty("--chart-width", "100%");
+  }
+  else if (dispositionName === "grid")
+  {
+    document.documentElement.style.setProperty("--chart-width", "50%");
+  }
+}
+
+
+document.getElementById("list-icon").addEventListener("click", () => changeChartsDisposition("list"));
+document.getElementById("grid-icon").addEventListener("click", () => changeChartsDisposition("grid"));
+
 
 
 const plotBirthChartMoon = (data) => {
 
     new Chart(ctxBirthChartMoon, {
         type: 'bar',
-        responsive: true,
-        maintainAspectRatio :false,
+        responsive: false,
+        maintainAspectRatio : false,
         data: {
             labels: [...Array(30).keys()],
             datasets: [{
@@ -19,6 +34,7 @@ const plotBirthChartMoon = (data) => {
         }
     });
 }
+
 
 function stacked_bar_plot(listes_familles, Vivants, Morts_nés, Décès){
   Chart.defaults.global.elements.line.fill = false;

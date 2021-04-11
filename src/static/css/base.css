@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: Impact, sans-serif;
 }
 
 a {
@@ -32,9 +33,13 @@ h2 {
 
 .navbar li {
     padding-left: 10px;
-    padding-right: 10px
+    padding-right: 10px;
 }
 
 .navbar li:first-child {
     margin-right: auto;
+}
+
+.navbar li:hover {
+    opacity: 0.7;
 }
