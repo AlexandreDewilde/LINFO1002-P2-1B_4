@@ -36,3 +36,9 @@ def phase(pos):
     index = (pos * dec(8)) + dec("0.5")
     index = math.floor(index)
     return moon_phase_dict[int(index) & 7]
+
+# This function is just adapted from the previous function to return only the index
+def phase_index(pos):
+    index = (pos * dec(8)) + dec("0.5")
+    index = math.floor(index)
+    return int(index) & 7
