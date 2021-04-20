@@ -134,14 +134,4 @@ class DB:
             return f":(  ==> {e}"
 
 
-    def pssst(self):
-        cursor = self.db.cursor()
-        req = cursor.execute("SELECT id FROM animaux WHERE animaux.mort_ne = 1 AND animaux.decede = 1")
-        s = 0
-        for row in req:
-            s += 1
-            print(row)
-        if s==0:
-            return "Odeen Walo Achiif"
-
 
