@@ -22,23 +22,15 @@ class DB:
         with self.db as cursor:
             return cursor.execute(req).fetchall()
 
-
-    def get_all_premature_death_birth(self):
-        """
-        Get all birthdates of premature deaths animals
-        """
-        req = "SELECT date FROM animaux, animaux_velages, velages_complications, velages WHERE animaux.mort_ne == 1 AND animaux.id == animaux_velages.animal_id AND animaux_velages.velage_id == velages_complications.velage_id AND velages_complications.complication_id == 6 AND velages.id == animaux_velages.animal_id"
+    
+    def get_all_animals_with_complications(self):
+        req = "SELECT * FROM animaux LEFT OUTER JOIN animaux_velages ON animaux_velages.animal_id = animaux.id LEFT OUTER JOIN velages_complications ON velages_complications.velage_id = animaux_velages.velage_id"
         with self.db as cursor:
             return cursor.execute(req).fetchall()
 
-
-    def get_all_animals_premature_w_familly_name(self):
-        req = "SELECT * FROM animaux, animaux_velages, velages_complications, velages, familles WHERE animaux.mort_ne == 1 AND animaux.id == animaux_velages.animal_id AND animaux_velages.velage_id == velages_complications.velage_id AND  velages.id == animaux_velages.animal_id AND velages_complications.complication_id == 6 AND animaux.famille_id == familles.id"
-        with self.db as cursor:
-            return cursor.execute(req).fetchall()
-
-    def get_all_animals_w_family_name(self):
-        req = "SELECT * FROM animaux, familles WHERE animaux.famille_id == familles.id"
+    
+    def get_all_premature_deaths(self):
+        req = "SELECT * FROM animaux, animaux_velages, velages_complications WHERE animaux.mort_ne = 1 AND animaux.id = animaux_velages.animal_id AND animaux_velages.velage_id = velages_complications.velage_id"
         with self.db as cursor:
             return cursor.execute(req).fetchall()
     
