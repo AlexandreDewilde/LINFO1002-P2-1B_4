@@ -30,7 +30,7 @@ class DB:
 
     
     def get_all_premature_deaths(self):
-        req = "SELECT * FROM animaux, animaux_velages, velages_complications WHERE animaux.mort_ne = 1 AND animaux.id = animaux_velages.animal_id AND animaux_velages.velage_id = velages_complications.velage_id AND velages_complications.complication_id = 6"
+        req = "SELECT date FROM animaux, animaux_velages, velages_complications, velages WHERE animaux.mort_ne = 1 AND animaux.id = animaux_velages.animal_id AND animaux_velages.velage_id = velages_complications.velage_id AND velages_complications.complication_id = 6 AND velages.id = animaux_velages.velage_id"
         with self.db as cursor:
             return cursor.execute(req).fetchall()
     
