@@ -71,7 +71,7 @@ class DB:
         '''
         cursor = self.db.cursor()
         req = cursor.execute(
-            'SELECT * FROM familles, animaux WHERE familles.id = animaux.famille_id AND animaux.mort_ne = 1')
+            'SELECT * FROM animaux, animaux_velages, velages_complications, velages, familles WHERE animaux.mort_ne == 1 AND animaux.id == animaux_velages.animal_id AND animaux_velages.velage_id == velages_complications.velage_id AND velages_complications.complication_id != 6 AND velages.id == animaux_velages.velage_id AND animaux.famille_id = familles.id')
 
         dic = {}
         try:
@@ -125,15 +125,5 @@ class DB:
         except Exception as e:
             return f":(  ==> {e}"
 
-
-    def pssst(self):
-        cursor = self.db.cursor()
-        req = cursor.execute("SELECT id FROM animaux WHERE animaux.mort_ne = 1 AND animaux.decede = 1")
-        s = 0
-        for row in req:
-            s += 1
-            print(row)
-        if s==0:
-            return "Odeen Walo Achiif"
 
 
