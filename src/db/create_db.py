@@ -1,10 +1,14 @@
 import sqlite3
+import os
+import pathlib
+from generate_race import generate_race
 
-db = sqlite3.connect("database.db")
+
+db = sqlite3.connect(os.path.join(pathlib.Path(__file__).parent.absolute(), "database.db"))
 cursor = db.cursor()
 
 
-with open('create_db.sql') as f:
+with open(os.path.join(pathlib.Path(__file__).parent.absolute(), "create_db.sql")) as f:
     db_creation = f.read()
 
 cursor.executescript(db_creation)
@@ -15,13 +19,13 @@ insert_files = ["insert_animaux_types.sql", "insert_animaux_velages.sql", "inser
 
 
 for insert_file in insert_files:
-    with open(f"./1002-sql-data/{insert_file}") as f:
+    with open(os.path.join(pathlib.Path(__file__).parent.absolute(), f"./1002-sql-data/{insert_file}")) as f:
         insert_content = f.read()
     
     cursor.executescript(insert_content)
     db.commit()
 
 
-
-
 db.close()
+
+generate_race()
