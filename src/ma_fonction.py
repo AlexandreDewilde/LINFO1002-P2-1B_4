@@ -2,7 +2,7 @@ from db.db import DB
 
 d = DB("db/database.db")
 
-def pst():
+def list_deces_prematures():
     list_birth = d.get_all_premature_deaths()
     #print(list_birth)
     dic = {}

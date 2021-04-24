@@ -60,7 +60,7 @@ const plotBirthChartMoon = (data, label) => {
 function stacked_bar_plot(deces){
   Chart.defaults.global.elements.line.fill = false;
   var barChartData = {
-    labels: [1,2,3,4,5,6,7,8,9,10,11,12],
+    labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
     datasets: [{
       type: 'bar',
       label: 'Décès Prématurés',
@@ -78,7 +78,7 @@ function stacked_bar_plot(deces){
     options: {
       title: {
         display: true,
-        text: "Chart.js Bar Chart - Stacked"
+        text: "Décès Prématurés - Durant L’année"
       },
       tooltips: {
         mode: 'label'
