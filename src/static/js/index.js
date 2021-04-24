@@ -57,28 +57,16 @@ const plotBirthChartMoon = (data, label) => {
 }
 
 
-function stacked_bar_plot(listes_familles, Vivants, Morts_nés, Décès){
+function stacked_bar_plot(deces){
   Chart.defaults.global.elements.line.fill = false;
   var barChartData = {
-    labels: listes_familles,
+    labels: [1,2,3,4,5,6,7,8,9,10,11,12],
     datasets: [{
       type: 'bar',
-      label: 'Vivants',
-      id: "y-axis-0",
-      backgroundColor: "green",
-      data: Vivants
-    }, {
-      type: 'bar',
-      label: 'Morts_nés',
+      label: 'Décès Prématurés',
       id: "y-axis-0",
       backgroundColor: "red",
-      data: Morts_nés
-    },{
-      type: 'bar',
-      label: 'Décès',
-      id: "y-axis-0",
-      backgroundColor: "orange",
-      data: Décès
+      data: deces
     }]
   };
 
