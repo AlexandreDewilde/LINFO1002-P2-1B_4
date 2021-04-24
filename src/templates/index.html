@@ -11,7 +11,6 @@
 <body>
 
     {% include "header.html" %}
-
     <section class="cards">
         <a href="#birth-moon-section">
             <section class="card">
@@ -63,7 +62,6 @@
         <canvas id="myChart" width="600" height="400"></canvas>
         </div>
     </section>
-
 </body>
 
 <script src="/static/js/base.js"></script>
@@ -76,4 +74,5 @@
     stacked_bar_plot({{deces | safe}});
 </script>
 
+{% include "footer.html" %}
 </html>
