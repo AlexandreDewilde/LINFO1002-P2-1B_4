@@ -18,7 +18,8 @@ db = DB(os.path.join(pathlib.Path(__file__).parent.absolute(), "db/database.db")
 @app.route("/")
 @app.route("/index")
 def index():
-    graph_data = graph_data={"birth_moon_label": list(moon_phase_dict.values()), "birth_moon": birth_moon(db.get_all_births()), "deaths": list_deces_prematures()}
+    all_births_moon_cycle, births_moon_cycle_by_year = birth_moon(db.get_all_births())
+    graph_data = graph_data={"birth_moon_label": list(moon_phase_dict.values()), "birth_moon": all_births_moon_cycle, "birth_moon_by_years": births_moon_cycle_by_year, "deaths": list_deces_prematures()}
     return render_template("index.html", graph_data=graph_data)
 
 

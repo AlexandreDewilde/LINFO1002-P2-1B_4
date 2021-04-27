@@ -92,6 +92,13 @@
     height: var(--chart-height);
 }
 
+.filters-chart {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+
 .chart {
     width: var(--chart-width);
     

@@ -32,10 +32,40 @@ const addGraphHTML = (chartName, chartTitle) => {
     chartContainerElement.innerHTML += `
     <section id="${chartName}-section" class="chart">
         <h3 class="chart-title">${chartTitle}</h3>
+        <div class="filters-chart" id="filters-chart-${chartName}">
+        </div>
+        
         <div class="chart-container">
             <canvas id="${chartName}" with="100%"></canvas>
         </div>
     </section>`;
+}
+
+const addSelectYearsFilter = (chart, chartName, years, allData, dataByYears) => {
+    let chartFilters = document.getElementById(`filters-chart-${chartName}`);
+
+    let yearsOptions = "";
+    years.forEach((year) => {
+        yearsOptions += `<option value="${year}">${year}</option>\n`
+    });
+
+    chartFilters.innerHTML += `
+    <select name="years" id="${chartName}-select-years" class="select-years">
+        <option value="all">Toutes les années</option>
+        ${yearsOptions}
+    </select>
+    `
+    document.getElementById(`${chartName}-select-years`).addEventListener("change", function() {
+        chart.data.datasets.forEach(dataset => {
+            if (this.value == "all") {
+                dataset.data = Object.values(allData);
+            }
+            else {
+                dataset.data = (Object.values(dataByYears[this.value]));
+            }
+        });
+        chart.update();
+    });
 }
 
 
@@ -116,13 +146,18 @@ document.getElementById("grid-icon").addEventListener("click", () => toggleChart
 
 const birth_moon_label = graph_data["birth_moon_label"];
 const birth_moon = graph_data["birth_moon"];
+const birth_moon_by_years = graph_data["birth_moon_by_years"];
 const deaths = graph_data["deaths"];
 
 
 // Adding graph to html, (adding section with a title and a canvas for the graph)
 addGraphHTML("birth-chart-moon", "Naissance selon le cycle lunaire");
+
 addGraphHTML("premature-deaths-by-months", "Morts Prématurés par mois");
 
+
 // Plot the graphs
-plotBirthChartMoon(birth_moon, birth_moon_label);
+let moonChart = plotBirthChartMoon(Object.values(birth_moon), birth_moon_label);
+addSelectYearsFilter(moonChart, "birth-chart-moon", Object.keys(birth_moon_by_years), birth_moon, birth_moon_by_years);
+
 prematureDeathsByMonths(deaths);
