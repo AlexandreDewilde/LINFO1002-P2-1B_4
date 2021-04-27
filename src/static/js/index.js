@@ -1,36 +1,47 @@
-let ctxBirthChartMoon = document.getElementById('birth-chart-moon-cycle').getContext('2d');
-
 // From chart js documentation https://www.chartjs.org/docs/2.7.2/general/responsive.html
 function resizeCharts() {
-  for (var id in Chart.instances) {
-    Chart.instances[id].resize()
-  }
-}
-
-const changeChartsDisposition = (dispositionName) => {
-  if (dispositionName === "list")
-  {
-    document.documentElement.style.setProperty("--chart-width", "100%");
-    document.documentElement.style.setProperty("--chart-height", "50vh");
-    // This function is needed to resized the chart
-    resizeCharts();
-  }
-  else if (dispositionName === "grid")
-  {
-    document.documentElement.style.setProperty("--chart-width", "48%");
-    document.documentElement.style.setProperty("--chart-height", "40vh");
-    resizeCharts();
-  }
+    for (var id in Chart.instances) {
+        Chart.instances[id].resize();
+    }
 }
 
 
-document.getElementById("list-icon").addEventListener("click", () => changeChartsDisposition("list"));
-document.getElementById("grid-icon").addEventListener("click", () => changeChartsDisposition("grid"));
+const toggleChartsDisposition = (dispositionName) => {
+    
+    if (dispositionName === "list")
+    {
+
+      document.documentElement.style.setProperty("--chart-width", "100%");
+      document.documentElement.style.setProperty("--chart-height", "50vh");
+      // This function is needed to resized the chart
+      resizeCharts();
+    }
+
+    else if (dispositionName === "grid")
+    {
+        document.documentElement.style.setProperty("--chart-width", "48%");
+        document.documentElement.style.setProperty("--chart-height", "40vh");
+        // Resize the graphs
+        resizeCharts();
+    }
+}
+
+
+const addGraphHTML = (chartName, chartTitle) => {
+    let chartContainerElement = document.querySelector(".charts-container");
+    chartContainerElement.innerHTML += `
+    <section id="${chartName}-section" class="chart">
+        <h3 class="chart-title">${chartTitle}</h3>
+        <div class="chart-container">
+            <canvas id="${chartName}" with="100%"></canvas>
+        </div>
+    </section>`;
+}
 
 
 const plotBirthChartMoon = (data, label) => {
-
-    new Chart(ctxBirthChartMoon, {
+    let ctxBirthChartMoon = document.getElementById('birth-chart-moon').getContext('2d');
+    let birthMoonChartParam = {
         type: 'bar',
         data: {
             labels: label,
@@ -42,6 +53,7 @@ const plotBirthChartMoon = (data, label) => {
                 borderWidth: 1
             }]
         },
+
         options: {
             responsive: true,
             maintainAspectRatio: false,
@@ -53,12 +65,13 @@ const plotBirthChartMoon = (data, label) => {
                 }]
             }
         }
-    });
+    };
+    return new Chart(ctxBirthChartMoon, birthMoonChartParam);
 }
 
 
-function stacked_bar_plot(deces){
-  Chart.defaults.global.elements.line.fill = false;
+function prematureDeathsByMonths(deces){
+    
   var barChartData = {
     labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
     datasets: [{
@@ -71,7 +84,7 @@ function stacked_bar_plot(deces){
   };
 
 
-  var ctx = document.getElementById("myChart");
+  var ctx = document.getElementById("premature-deaths-by-months");
   var ch = new Chart(ctx, {
     type: 'bar',
     data: barChartData,
@@ -80,10 +93,8 @@ function stacked_bar_plot(deces){
         display: true,
         text: "Décès Prématurés - Durant L’année"
       },
-      tooltips: {
-        mode: 'label'
-      },
       responsive: true,
+      maintainAspectRatio: false,
       scales: {
         xAxes: [{
           stacked: true
@@ -92,12 +103,26 @@ function stacked_bar_plot(deces){
           stacked: true,
           position: "left",
           id: "y-axis-0",
-        }, {
-          stacked: false,
-          position: "right",
-          id: "y-axis-1",
         }]
       }
     }
   });
 }
+
+
+document.getElementById("list-icon").addEventListener("click", () => toggleChartsDisposition("list"));
+document.getElementById("grid-icon").addEventListener("click", () => toggleChartsDisposition("grid"));
+
+
+const birth_moon_label = graph_data["birth_moon_label"];
+const birth_moon = graph_data["birth_moon"];
+const deaths = graph_data["deaths"];
+
+
+// Adding graph to html, (adding section with a title and a canvas for the graph)
+addGraphHTML("birth-chart-moon", "Naissance selon le cycle lunaire");
+addGraphHTML("premature-deaths-by-months", "Morts Prématurés par mois");
+
+// Plot the graphs
+plotBirthChartMoon(birth_moon, birth_moon_label);
+prematureDeathsByMonths(deaths);

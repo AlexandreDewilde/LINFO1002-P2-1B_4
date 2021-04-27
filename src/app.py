@@ -18,7 +18,8 @@ db = DB(os.path.join(pathlib.Path(__file__).parent.absolute(), "db/database.db")
 @app.route("/")
 @app.route("/index")
 def index():
-    return render_template("index.html", birth_moon=birth_moon(db.get_all_births()), birth_moon_label=list(moon_phase_dict.values()), deces = list_deces_prematures())
+    graph_data = graph_data={"birth_moon_label": list(moon_phase_dict.values()), "birth_moon": birth_moon(db.get_all_births()), "deaths": list_deces_prematures()}
+    return render_template("index.html", graph_data=graph_data)
 
 
 @app.route('/about')

@@ -1,4 +1,4 @@
-toggleTheme = () => {
+const toggleTheme = () => {
     styleTag = document.getElementById("base-stylesheet");
     if (styleTag.href.includes("/static/css/light.css")) {
         styleTag.href = "/static/css/darkmode.css";
