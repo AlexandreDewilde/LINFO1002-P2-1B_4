@@ -11,7 +11,7 @@ const toggleChartsDisposition = (dispositionName) => {
     if (dispositionName === "list")
     {
 
-      document.documentElement.style.setProperty("--chart-width", "100%");
+      document.documentElement.style.setProperty("--chart-width", "90%");
       document.documentElement.style.setProperty("--chart-height", "50vh");
       // This function is needed to resized the chart
       resizeCharts();

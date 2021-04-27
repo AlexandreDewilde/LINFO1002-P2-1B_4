@@ -19,7 +19,7 @@ def birth_moon(data):
         total_occurences[moon_phase] = total_occurences.get(moon_phase, 0) + 1
 
         if year not in occurrences:
-            occurrences[year] = {moon_phase: 1} 
+            occurrences[year] = {k : 0 if k != moon_phase else 1 for k in range(8)} 
         else:
             occurrences[year][moon_phase] = occurrences[year].get(moon_phase, 0) + 1
 
