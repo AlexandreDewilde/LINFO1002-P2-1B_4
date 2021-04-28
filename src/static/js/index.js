@@ -41,83 +41,40 @@ const addGraphHTML = (chartName, chartTitle) => {
     </section>`;
 }
 
-const addSelectYearsFilter = (chart, chartName, years, allData, dataByYears) => {
-    let chartFilters = document.getElementById(`filters-chart-${chartName}`);
-
-    let yearsOptions = "";
-    years.forEach((year) => {
-        yearsOptions += `<input type="checkbox" name="${year}" value="${year}" class="checkbox-${chartName}" checked>${year}</input>\n`
-    });
-
-    chartFilters.innerHTML += `
-        <input type="button" class="select-years-checkbox button" value="Choisir les années" />
-        <div name="years" id="${chartName}-select-years" class="select-years">
-            <input type="checkbox" value="all" name="all" class="checkbox-${chartName}" checked>Toutes les années</input>
-            ${yearsOptions}
-        </div>
-    `
-    document.querySelectorAll(`.checkbox-${chartName}`).forEach(element => {
-        element.addEventListener("click", element => {
-            const value = element.target.value;
-            const checked = element.target.checked;
-            chart.data.datasets.forEach(dataset => {
-                if (value === "all")
-                {
-                    if (checked) {
-                        dataset.data = Object.values(allData);
-                        document.querySelectorAll(`.checkbox-${chartName}`).forEach(element => element.checked = true);
-                    }
-                    else {
-                        for (let i = 0; i < dataset.data.length; i++) {
-                            dataset.data[i] = 0;
-                        }
-                        document.querySelectorAll(`.checkbox-${chartName}`).forEach(element => element.checked = false);
-                    }
-                }
-                else if (checked) {
-                    for (let i = 0; i < dataset.data.length; i++) {
-                        dataset.data[i] += dataByYears[value][i];
-                    }
-                }
-                else {
-                    document.querySelector(`.checkbox-${chartName}`).checked = false;
-                    for (let i = 0; i < dataset.data.length; i++) {
-                        dataset.data[i] -= dataByYears[value][i];
-                    }
-                }
-            });
-            chart.update();
-        });
-    });
-}
 
 
 const plotBirthChartMoon = (data, label) => {
     let ctxBirthChartMoon = document.getElementById('birth-chart-moon').getContext('2d');
-    let birthMoonChartParam = {
+    let datasets = [];
+    for (let [key, value] of Object.entries(data)) {
+        datasets.push({
+            label: key,
+            data: Object.values(value),
+            stack: `${data.length}`,
+            backgroundColor: "#388E8E",
+            borderColor: "#388E8E",
+        });
+    }
+    const birthMoonChartParam = {
         type: 'bar',
         data: {
             labels: label,
-            datasets: [{
-                label: 'Naissances par jour du cycle lunaire',
-                data: data,
-                backgroundColor: "#388E8E",
-                borderColor: "#388E8E",
-                borderWidth: 1
-            }]
+            datasets: datasets,
         },
-
         options: {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        max: 600
-                    }
-                }]
+                x: {
+                    stacked: true,
+                },
+                y: {
+                    beginAtZero: true,
+                    stacked: true,
+                    max: 600
+                }
             }
+            
         }
     };
     return new Chart(ctxBirthChartMoon, birthMoonChartParam);
@@ -169,7 +126,6 @@ document.getElementById("grid-icon").addEventListener("click", () => toggleChart
 
 
 const birth_moon_label = graph_data["birth_moon_label"];
-const birth_moon = graph_data["birth_moon"];
 const birth_moon_by_years = graph_data["birth_moon_by_years"];
 const deaths = graph_data["deaths"];
 
@@ -180,7 +136,6 @@ addGraphHTML("premature-deaths-by-months", "Morts Prématurés par mois");
 
 
 // Plot the graphs
-let moonChart = plotBirthChartMoon(Object.values(birth_moon), birth_moon_label);
-addSelectYearsFilter(moonChart, "birth-chart-moon", Object.keys(birth_moon_by_years), birth_moon, birth_moon_by_years);
+let moonChart = plotBirthChartMoon(birth_moon_by_years, birth_moon_label);
 
 prematureDeathsByMonths(deaths);
