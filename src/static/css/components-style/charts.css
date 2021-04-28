@@ -1,0 +1,41 @@
+:root {
+    --chart-width: 90%;
+    --chart-height: 40vh;
+}
+
+
+.charts-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.chart-container {
+    height: var(--chart-height);
+}
+
+.filters-chart {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+
+.chart {
+    width: var(--chart-width);
+    
+}
+
+.chart-title {
+    text-align: center;
+}
+
+.select-years-checkbox + .select-years{
+    display: none;
+}
+
+.select-years-checkbox:checked + .select-years {
+    display: unset;
+}

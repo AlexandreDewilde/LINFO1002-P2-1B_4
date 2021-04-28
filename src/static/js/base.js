@@ -32,14 +32,14 @@ let theme = getCookie("theme");
 
 if (theme != null) {
     styleTag = document.getElementById("base-stylesheet");
-    if (theme === "light" && !styleTag.href.includes("/static/css/light.css"))
+    if (theme === "light" && !styleTag.href.includes("/static/css/theme/light.css"))
     {
         styleTag.href = "/static/css/light.css";
-        document.getElementById("theme-icon").className = "fa fa-moon-o"
+        document.getElementById("theme-icon").className = "fa fa-moon-o";
     }
-    else if (theme === "dark" && !styleTag.href.includes("/static/css/darkmode.css"))
+    else if (theme === "dark" && !styleTag.href.includes("/static/css/theme/darkmode.css"))
     {
         styleTag.href = "/static/css/darkmode.css";
-        document.getElementById("theme-icon").className = "fa fa-sun-o"
+        document.getElementById("theme-icon").className = "fa fa-sun-o";
     }
 }
