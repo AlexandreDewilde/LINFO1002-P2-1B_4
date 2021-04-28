@@ -36,6 +36,10 @@
     display: none;
 }
 
-.select-years-checkbox:checked + .select-years {
+.select-years-checkbox:hover + .select-years {
+    display: unset;
+}
+
+.select-years:hover {
     display: unset;
 }

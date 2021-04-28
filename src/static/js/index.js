@@ -50,7 +50,7 @@ const addSelectYearsFilter = (chart, chartName, years, allData, dataByYears) => 
     });
 
     chartFilters.innerHTML += `
-        <input type="checkbox" class="select-years-checkbox" value="Choisir les années">Filtrer par années</input>
+        <input type="button" class="select-years-checkbox button" value="Choisir les années" />
         <div name="years" id="${chartName}-select-years" class="select-years">
             <input type="checkbox" value="all" name="all" class="checkbox-${chartName}" checked>Toutes les années</input>
             ${yearsOptions}
