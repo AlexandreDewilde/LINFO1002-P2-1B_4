@@ -31,15 +31,3 @@
 .chart-title {
     text-align: center;
 }
-
-.select-years-checkbox + .select-years{
-    display: none;
-}
-
-.select-years-checkbox:hover + .select-years {
-    display: unset;
-}
-
-.select-years:hover {
-    display: unset;
-}

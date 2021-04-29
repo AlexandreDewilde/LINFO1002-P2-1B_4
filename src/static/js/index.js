@@ -5,16 +5,18 @@ function resizeCharts() {
     }
 }
 
-
+/**
+  * Change the disposition of graph in the page
+  * @param {string} dispositionName - The new disposition to adopt : list or grid
+*/
 const toggleChartsDisposition = (dispositionName) => {
     
     if (dispositionName === "list")
     {
-
-      document.documentElement.style.setProperty("--chart-width", "90%");
-      document.documentElement.style.setProperty("--chart-height", "50vh");
-      // This function is needed to resized the chart
-      resizeCharts();
+        document.documentElement.style.setProperty("--chart-width", "90%");
+        document.documentElement.style.setProperty("--chart-height", "50vh");
+        // This function is needed to resized the chart
+        resizeCharts();
     }
 
     else if (dispositionName === "grid")
@@ -26,8 +28,13 @@ const toggleChartsDisposition = (dispositionName) => {
     }
 }
 
-
+/**
+    * Add a container for graph in the html in the charts container section
+    * @param {string} chartName- Name of the chart, it will be the name of the canvas containing the graph
+    * @param {string} chartTitle - Name of the chart, to display
+*/
 const addGraphHTML = (chartName, chartTitle) => {
+    // Get the first chart container in the page
     let chartContainerElement = document.querySelector(".charts-container");
     chartContainerElement.innerHTML += `
     <section id="${chartName}-section" class="chart">
@@ -41,24 +48,29 @@ const addGraphHTML = (chartName, chartTitle) => {
     </section>`;
 }
 
-
-
-const plotBirthChartMoon = (data, label) => {
+/**
+    * Plot a stacked bar chart of the birth per moon phase, with years stacked
+    * @param {map} data - A map with years as key and the birth per moon phase as value
+    * @param {list} labels - The labels for each bars of the chart
+*/
+const plotBirthChartMoon = (data, labels) => {
+    // Get the canvas where to plot the chart
     let ctxBirthChartMoon = document.getElementById('birth-chart-moon').getContext('2d');
     let datasets = [];
     for (let [key, value] of Object.entries(data)) {
         datasets.push({
             label: key,
-            data: Object.values(value),
+            data: value,
             stack: `${data.length}`,
             backgroundColor: "#388E8E",
             borderColor: "#388E8E",
         });
     }
+
     const birthMoonChartParam = {
         type: 'bar',
         data: {
-            labels: label,
+            labels: labels,
             datasets: datasets,
         },
         options: {
@@ -77,10 +89,14 @@ const plotBirthChartMoon = (data, label) => {
             
         }
     };
+    // Plot the graph
     return new Chart(ctxBirthChartMoon, birthMoonChartParam);
 }
 
-
+/**
+    * Plot a graph of the premature deaths per months
+    * @param {list} deces - List of the deaths for each months
+ */
 function prematureDeathsByMonths(deces){
     
   var barChartData = {
@@ -120,7 +136,7 @@ function prematureDeathsByMonths(deces){
   });
 }
 
-
+// Listen the button to change the graph disposition
 document.getElementById("list-icon").addEventListener("click", () => toggleChartsDisposition("list"));
 document.getElementById("grid-icon").addEventListener("click", () => toggleChartsDisposition("grid"));
 
@@ -137,5 +153,4 @@ addGraphHTML("premature-deaths-by-months", "Morts Prématurés par mois");
 
 // Plot the graphs
 let moonChart = plotBirthChartMoon(birth_moon_by_years, birth_moon_label);
-
 prematureDeathsByMonths(deaths);

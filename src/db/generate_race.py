@@ -4,9 +4,12 @@ import pathlib
 
 
 def generate_race():
+    """Generate race for every animals in the db according its ancestors"""
+
+    #Connect to the database
     db = sqlite3.connect(os.path.join(pathlib.Path(__file__).parent.absolute(), "database.db"))
 
-
+    #Fetch all animals
     with db as cursor:
         animals = cursor.execute("SELECT id FROM animaux")
 

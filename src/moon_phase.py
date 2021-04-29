@@ -2,11 +2,13 @@
 
 """
 moonphase.py - Calculate Lunar Phase
-Author: Sean B. Palmer, inamidst.com -- With some editions from Alexandre Dewilde to Translate moon phase<
+Author: Sean B. Palmer, inamidst.com -- With some editions from Alexandre Dewilde to Translate moon phase
 Cf. http://en.wikipedia.org/wiki/Lunar_phase#Lunar_phase_calculation
 """
 
-import math, decimal, datetime
+import math
+import decimal
+import datetime
 
 
 moon_phase_dict = {
@@ -37,8 +39,15 @@ def phase(pos):
     index = math.floor(index)
     return moon_phase_dict[int(index) & 7]
 
-# This function is just adapted from the previous function to return only the index
-def phase_index(pos):
-    index = (pos * dec(8)) + dec("0.5")
-    index = math.floor(index)
-    return int(index) & 7
+
+# This function is just adapted from the previous phase() function to return only the index
+def phase_index(pos: float) -> int:
+    """
+    From the moon position return the number according to the current phase moon
+    Args:
+        pos (int): Int representing the moon position
+    Returns:
+        int: int representing the moon phase for the position given in parameter
+    """
+    idx: float = (pos * dec(8)) + dec("0.5")
+    return math.floor(idx) & 7

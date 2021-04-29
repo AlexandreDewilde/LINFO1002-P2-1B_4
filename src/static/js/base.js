@@ -1,13 +1,24 @@
+const lightThemePath = "/static/css/theme/light.css";
+const darkThemePath = "/static/css/theme/darkmode.css";
+
+/**
+    * Toogle the theme
+*/
 const toggleTheme = () => {
+    // get the element containing the style of the theme
     styleTag = document.getElementById("base-stylesheet");
-    if (styleTag.href.includes("/static/css/theme/light.css")) {
-        styleTag.href = "/static/css/theme/darkmode.css";
-        document.getElementById("theme-icon").className = "fa fa-sun-o"
+
+    if (styleTag.href.includes(lightThemePath)) {
+        styleTag.href = darkThemePath;
+        // change Icon to display a sun
+        document.getElementById("theme-icon").className = "fa fa-sun-o";
         setCookie("theme", "dark", "Fri, 31 Dec 9999 23:59:59 GMT");
-    } 
+    }
+
     else {
-        styleTag.href = "/static/css/theme/light.css";
-        document.getElementById("theme-icon").className = "fa fa-moon-o"
+        styleTag.href = lightThemePath;
+        // Change icon to display a moon
+        document.getElementById("theme-icon").className = "fa fa-moon-o";
         setCookie("theme", "light", "Fri, 31 Dec 9999 23:59:59 GMT");
     }
 };
@@ -30,6 +41,7 @@ const setCookie = (name, value, expiration) => {
 
 let theme = getCookie("theme");
 
+// When page loads set theme according to cookie, if it exists
 if (theme != null) {
     styleTag = document.getElementById("base-stylesheet");
     if (theme === "light" && !styleTag.href.includes("/static/css/theme/light.css"))
