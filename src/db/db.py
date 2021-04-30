@@ -23,7 +23,7 @@ class DB:
         """
         For each animals in the database get its birthdate if its born in the farm
         Returns:
-            List[str]: list of all animals birthdates as string in "dd:mm:yy" format
+            List[str]: list of all animals birthdates as string in "dd:mm:yyyy" format
         """
         with self.db as cursor:
             # This requests fetch all birth dates for each animal
@@ -43,7 +43,7 @@ class DB:
         """
         Get all animals death prematurely
         Returns:
-            List[tuple]: list of tuple with date of births as unique element in string format "dd:mm:yy" of all animals death prematurely
+            List[tuple]: list of tuple with date of births as unique element in string format "dd:mm:yyyy" of all animals death prematurely
         """
         with self.db as cursor:
             req: str = "SELECT date FROM animaux, animaux_velages, velages_complications, velages WHERE animaux.mort_ne = 1 AND animaux.id = animaux_velages.animal_id AND animaux_velages.velage_id = velages_complications.velage_id AND velages_complications.complication_id = 6 AND velages.id = animaux_velages.velage_id"

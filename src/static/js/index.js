@@ -52,9 +52,7 @@ const addGraphHTML = (chartName, chartTitle, chartDescription, chartImgDescripti
     chartContainerElement.innerHTML += `
     <section id="${chartName}-section" class="chart">
         <h3 class="chart-title">${chartTitle}</h3>
-        <div class="filters-chart" id="filters-chart-${chartName}">
-        </div>
-        
+        <span class="chart-description">${chartDescription}</span>        
         <div class="chart-container">
             <canvas id="${chartName}" with="100%"></canvas>
         </div>
