@@ -11,6 +11,7 @@ from db.db import DB
 from moon_phases import moon_phases_by_years
 from moon_phase import moon_phase_dict
 from ma_fonction import list_deces_prematures
+from fam_pre import list_deces_prematures_family
 
 
 app: Flask = Flask(__name__)
@@ -25,7 +26,7 @@ def index():
     Render the index html page
     """
     births_moon_cycle_by_year: Dict[int, str] = moon_phases_by_years(db.get_births())
-    graph_data: Dict[str, Union[list, dict]] = {"birth_moon_label": list(moon_phase_dict.values()), "birth_moon_by_years": births_moon_cycle_by_year, "deaths": list_deces_prematures()}
+    graph_data: Dict[str, Union[list, dict]] = {"birth_moon_label": list(moon_phase_dict.values()), "birth_moon_by_years": births_moon_cycle_by_year, "deaths": list_deces_prematures(), "family": list_deces_prematures_family()}
     return render_template("index.html", graph_data=graph_data)
 
 

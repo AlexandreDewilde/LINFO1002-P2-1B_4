@@ -48,3 +48,13 @@ class DB:
         with self.db as cursor:
             req: str = "SELECT date FROM animaux, animaux_velages, velages_complications, velages WHERE animaux.mort_ne = 1 AND animaux.id = animaux_velages.animal_id AND animaux_velages.velage_id = velages_complications.velage_id AND velages_complications.complication_id = 6 AND velages.id = animaux_velages.velage_id"
             return cursor.execute(req).fetchall()
+
+    def get_all_premature_deaths_family(self) -> List[tuple]:
+        """
+        Get all animals death prematurely
+        Returns:
+            List[tuple]: list of tuple with family id as unique element in string format "" of all animals death prematurely
+        """
+        with self.db as cursor:
+            req: str = "SELECT famille_id FROM animaux, animaux_velages, velages_complications, velages WHERE animaux.mort_ne = 1 AND animaux.id = animaux_velages.animal_id AND animaux_velages.velage_id = velages_complications.velage_id AND velages_complications.complication_id = 6 AND velages.id = animaux_velages.velage_id"
+            return cursor.execute(req).fetchall()
