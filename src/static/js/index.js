@@ -200,13 +200,13 @@ document.getElementById("grid-icon").addEventListener("click", () => toggleChart
 const birth_moon_label = graph_data["birth_moon_label"];
 const birth_moon_by_years = graph_data["birth_moon_by_years"];
 const deaths = graph_data["deaths"];
-const family = graph_data("family")
+const family = graph_data["family"];
 
 
 // Adding graph to html, (adding section with a title and a canvas for the graph)
 addGraphHTML("birth-chart-moon", "Naissance selon le cycle lunaire", "Un graphique des naissances en fonction de la phase lunaire", "/static/images/moon.jpg");
 addGraphHTML("premature-deaths-by-months", "Morts Prématurés par mois", "Un graphique des morts en fonction des mois de l'année", "/static/images/death.jpg");
-addGraphHTML("premature-deaths-by-family", "Morts Prématurés par familles", "Un graphique des décès prématurés en fonction des familles", "/static/images/vaches.jpg")
+addGraphHTML("premature-deaths-by-family", "Morts Prématurés par familles", "Un graphique des décès prématurés en fonction des familles", "/static/images/vaches.jpg");
 
 // Plot the graphs
 let moonChart = plotBirthChartMoon(birth_moon_by_years, birth_moon_label);
