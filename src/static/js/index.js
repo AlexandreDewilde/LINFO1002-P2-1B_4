@@ -33,7 +33,20 @@ const toggleChartsDisposition = (dispositionName) => {
     * @param {string} chartName- Name of the chart, it will be the name of the canvas containing the graph
     * @param {string} chartTitle - Name of the chart, to display
 */
-const addGraphHTML = (chartName, chartTitle) => {
+const addGraphHTML = (chartName, chartTitle, chartDescription, chartImgDescriptionPath) => {
+    // Get cards section
+    let cardsSection = document.querySelector(".cards");
+    cardsSection.innerHTML += `
+    <a href="#${chartName}-section">
+        <section class="card">
+            <img class="card-picture" src="${chartImgDescriptionPath}" alt="moon pictures">
+            <div class="card-description">
+                <span class="card-title">${chartTitle}</span>
+                <span class="card-sub-description">${chartDescription}</span>
+            </div>
+        </section>
+    </a>
+    `
     // Get the first chart container in the page
     let chartContainerElement = document.querySelector(".charts-container");
     chartContainerElement.innerHTML += `
@@ -83,7 +96,6 @@ const plotBirthChartMoon = (data, labels) => {
                 y: {
                     beginAtZero: true,
                     stacked: true,
-                    max: 600
                 }
             }
             
@@ -147,8 +159,8 @@ const deaths = graph_data["deaths"];
 
 
 // Adding graph to html, (adding section with a title and a canvas for the graph)
-addGraphHTML("birth-chart-moon", "Naissance selon le cycle lunaire");
-addGraphHTML("premature-deaths-by-months", "Morts Prématurés par mois");
+addGraphHTML("birth-chart-moon", "Naissance selon le cycle lunaire", "Un graphique des naissances en fonction de la phase lunaire", "/static/images/moon.jpg");
+addGraphHTML("premature-deaths-by-months", "Morts Prématurés par mois", "Un graphique des morts en fonction des mois de l'année", "/static/images/death.jpg");
 
 
 // Plot the graphs
