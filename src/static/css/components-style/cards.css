@@ -47,4 +47,15 @@
 
 .card-sub-description {
     margin-top: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
+
+
+@media only screen and (max-width: 500px) {
+    .card-sub-description {
+        -webkit-line-clamp: 3;
+    }
+} 
