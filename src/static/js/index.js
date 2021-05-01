@@ -109,41 +109,41 @@ const plotBirthChartMoon = (data, labels) => {
  */
 function prematureDeathsByMonths(deces){
     
-  var barChartData = {
-    labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
-    datasets: [{
-      type: 'bar',
-      label: 'Décès Prématurés',
-      id: "y-axis-0",
-      backgroundColor: "red",
-      data: deces
-    }]
-  };
-
-
-  var ctx = document.getElementById("premature-deaths-by-months");
-  var ch = new Chart(ctx, {
-    type: 'bar',
-    data: barChartData,
-    options: {
-      title: {
-        display: true,
-        text: "Décès Prématurés - Durant L’année"
-      },
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        xAxes: [{
-          stacked: true
-        }],
-        yAxes: [{
-          stacked: true,
-          position: "left",
-          id: "y-axis-0",
+    var barChartData = {
+        labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
+        datasets: [{
+            type: 'bar',
+            label: 'Décès Prématurés',
+            id: "y-axis-0",
+            backgroundColor: "red",
+            data: deces
         }]
-      }
-    }
-  });
+    };
+
+
+    var ctx = document.getElementById("premature-deaths-by-months");
+    var ch = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData,
+        options: {
+            title: {
+                display: true,
+                text: "Décès Prématurés - Durant L’année"
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                xAxes: [{
+                    stacked: true
+                }],
+                yAxes: [{
+                    stacked: true,
+                    position: "left",
+                    id: "y-axis-0",
+                }]
+            }
+        }
+    });
 }
 
 /**
