@@ -4,7 +4,7 @@ import pathlib
 from generate_race import generate_race
 
 def main():
-    # Connection to database, database will be created if it doesn't exist
+    # Connection to database
     db = sqlite3.connect(os.path.join(pathlib.Path(__file__).parent.absolute(), "database.db"))
     cursor = db.cursor()
 
