@@ -3,6 +3,10 @@ from db.db import DB
 d = DB("db/database.db")
 
 def list_deces_prematures():
+    """
+    Returns:
+        Une liste contenant le nombre de morts prématurés
+    """
     list_birth = d.get_all_premature_deaths()
     #print(list_birth)
     dic = {}
@@ -16,4 +20,4 @@ def list_deces_prematures():
         else:
             l[i] = 0
     return l
-#print(pst())
+#print(list_deces_prematures())
