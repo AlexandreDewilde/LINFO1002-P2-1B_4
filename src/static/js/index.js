@@ -105,24 +105,24 @@ const plotBirthChartMoon = (data, labels) => {
 
 /**
     * Plot a graph of the premature deaths per months
-    * @param {list} deces - List of the deaths for each months
+    * @param {list} deaths - List of the prematures deaths for each months, for instance [0, 2, ......] corresponds to 0 death in january, 2 deaths in february, ....
  */
-function prematureDeathsByMonths(deces){
+function prematureDeathsByMonths(deaths){
     
-    var barChartData = {
+    let barChartData = {
         labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
         datasets: [{
             type: 'bar',
             label: 'Décès Prématurés',
             id: "y-axis-0",
             backgroundColor: "red",
-            data: deces
+            data: deaths
         }]
     };
 
 
-    var ctx = document.getElementById("premature-deaths-by-months");
-    var ch = new Chart(ctx, {
+    let ctxPrematureDeathsByMonths = document.getElementById("premature-deaths-by-months");
+    return new Chart(ctxPrematureDeathsByMonths, {
         type: 'bar',
         data: barChartData,
         options: {
@@ -204,8 +204,18 @@ const family = graph_data["family"];
 
 
 // Adding graph to html, (adding section with a title and a canvas for the graph)
-addGraphHTML("birth-chart-moon", "Naissance selon le cycle lunaire", "Un graphique des naissances en fonction de la phase lunaire", "/static/images/moon.jpg");
-addGraphHTML("premature-deaths-by-months", "Morts Prématurés par mois", "Un graphique des morts en fonction des mois de l'année", "/static/images/death.jpg");
+addGraphHTML(
+    "birth-chart-moon",
+    "Naissance selon le cycle lunaire",
+    "Un graphique des naissances en fonction de la phase de la lune, ce graph est la pour confirmer ou infirmer une croyance selon laquelle, il y aurai plus de naissances en phase de pleine lune",
+    "/static/images/moon.jpg"
+);
+addGraphHTML(
+    "premature-deaths-by-months",
+    "Morts Prématurés par mois",
+    "Un graphique des morts prématurés en fonction des mois de l'année, une veau mort prématurérément est un veau qui est né prématurément et mort dans les semaines après celle-ci", 
+    "/static/images/death.jpg"
+);
 addGraphHTML("premature-deaths-by-family", "Morts Prématurés par familles", "Un graphique des décès prématurés en fonction des familles", "/static/images/vaches.jpg");
 
 // Plot the graphs
