@@ -7,10 +7,10 @@ from flask import Flask
 from flask import render_template, redirect, url_for
 
 from config import DEBUG
-from db.db import DB
+from db import DB
 from moon_phases import moon_phases_by_years
 from moon_phase import moon_phase_dict
-from ma_fonction import list_deces_prematures
+from premature_death import list_deces_prematures
 from fam_pre import list_deces_prematures_family
 
 
@@ -25,8 +25,16 @@ def index():
     """
     Render the index html page
     """
+    families: List[tuple] = db.get_families()
+    families_ids = [family[0] for family in families]
     births_moon_cycle_by_year: Dict[int, str] = moon_phases_by_years(db.get_births())
-    graph_data: Dict[str, Union[list, dict]] = {"birth_moon_label": list(moon_phase_dict.values()), "birth_moon_by_years": births_moon_cycle_by_year, "deaths": list_deces_prematures(), "family": list_deces_prematures_family()}
+    
+    graph_data: Dict[str, Union[list, dict]] = {
+        "birth_moon_label": list(moon_phase_dict.values()),
+        "birth_moon_by_years": births_moon_cycle_by_year,
+        "deaths": list_deces_prematures(db.get_all_premature_deaths()),
+        "family": list_deces_prematures_family(famillies_ids, db.get_all_premature_deaths_family())
+    }
     return render_template("index.html", graph_data=graph_data)
 
 
