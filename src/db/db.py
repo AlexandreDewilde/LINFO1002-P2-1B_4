@@ -20,14 +20,17 @@ class DB:
 
     
     def close(self) -> None:
+        """
+        Close the database connection
+        """
         self.db.close()
         
 
-    def get_families(self) -> List[tuple]:
+    def get_families(self) -> List[Tuple[int, str]]:
         """
         Get all families in the db
         Returns:
-            List[tuple] : List of families with their ids and names
+            List[Tuple[int, str]] : List of families with their ids and names
         """
         with self.db as cursor:
             req: str = "SELECT id, nom FROM familles"
@@ -46,22 +49,22 @@ class DB:
             return [row[0] for row in cursor.execute(req).fetchall()]
 
 
-    def get_all_premature_deaths(self) -> List[tuple]:
+    def get_all_premature_deaths(self) -> List[Tuple[str]]:
         """
         Get all animals death prematurely
         Returns:
-            List[tuple]: list of tuple with date of births as unique element in string format "dd:mm:yyyy" of all animals death prematurely
+            List[Tuple[str]]: list of tuple with date of births as unique element in string format "dd:mm:yyyy" of all animals death prematurely
         """
         with self.db as cursor:
             req: str = "SELECT date FROM animaux, animaux_velages, velages_complications, velages WHERE animaux.mort_ne = 1 AND animaux.id = animaux_velages.animal_id AND animaux_velages.velage_id = velages_complications.velage_id AND velages_complications.complication_id = 6 AND velages.id = animaux_velages.velage_id"
             return cursor.execute(req).fetchall()
     
 
-    def get_all_premature_deaths_family(self) -> List[tuple]:
+    def get_all_premature_deaths_family(self) -> List[Tuple[int]]:
         """
         Get all animals death prematurely
         Returns:
-            List[tuple]: list of tuple with family id as unique element in string format "" of all animals death prematurely
+            List[Tuple[int]]: list of tuple with family id as unique element in string format "" of all animals death prematurely
         """
         with self.db as cursor:
             req: str = "SELECT famille_id FROM animaux, animaux_velages, velages_complications, velages WHERE animaux.mort_ne = 1 AND animaux.id = animaux_velages.animal_id AND animaux_velages.velage_id = velages_complications.velage_id AND velages_complications.complication_id = 6 AND velages.id = animaux_velages.velage_id"

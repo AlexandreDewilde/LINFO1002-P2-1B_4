@@ -26,7 +26,7 @@ def index():
     Render the index html page
     """
     families: List[tuple] = db.get_families()
-    families_ids = [family[0] for family in families]
+    families_ids: List[int] = [family[0] for family in families]
     births_moon_cycle_by_year: Dict[int, str] = moon_phases_by_years(db.get_births())
 
     graph_data: Dict[str, Union[list, dict]] = {
@@ -53,13 +53,13 @@ def favicon():
     """
     return redirect(url_for('static', filename='images/favicon.png'))
 
+
 @app.errorhandler(404)
 def not_found(e):
     """
     Render the 404 page
     """
     return render_template("404.html"), 404
-
 
 
 if __name__ == "__main__":
