@@ -11,9 +11,11 @@
     display: flex;
     flex-direction: row;
     margin: 10px;
-    min-width: 300px;
-    min-height: 200px;
-    max-width: 20vw;
+    min-width: 250px;
+    max-width: 30vw;
+    min-height: 150px;
+    max-height: 150px;
+
     box-shadow: 0 0 2px;
 }
 
@@ -48,14 +50,19 @@
 .card-sub-description {
     margin-top: 10px;
     display: -webkit-box;
-    -webkit-line-clamp: 6;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
+@media only screen and (max-width: 900px) {
+    .card-sub-description {
+        -webkit-line-clamp: 2;
+    }
+} 
 
 @media only screen and (max-width: 500px) {
-    .card-sub-description {
-        -webkit-line-clamp: 3;
+    .card {
+        min-height: 20vh;
     }
 } 

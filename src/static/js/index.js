@@ -87,6 +87,13 @@ const plotBirthChartMoon = (data, labels) => {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            legend: {
+                labels: {
+                    filter: () => {
+                        return document.documentElement.clientWidth > 500;
+                    }
+                }
+            },
             scales: {
                 x: {
                     stacked: true,
