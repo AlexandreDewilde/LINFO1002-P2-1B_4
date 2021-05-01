@@ -28,12 +28,12 @@ def index():
     families: List[tuple] = db.get_families()
     families_ids = [family[0] for family in families]
     births_moon_cycle_by_year: Dict[int, str] = moon_phases_by_years(db.get_births())
-    
+
     graph_data: Dict[str, Union[list, dict]] = {
         "birth_moon_label": list(moon_phase_dict.values()),
         "birth_moon_by_years": births_moon_cycle_by_year,
         "deaths": list_deces_prematures(db.get_all_premature_deaths()),
-        "family": list_deces_prematures_family(famillies_ids, db.get_all_premature_deaths_family())
+        "family": list_deces_prematures_family(families_ids, db.get_all_premature_deaths_family())
     }
     return render_template("index.html", graph_data=graph_data)
 
