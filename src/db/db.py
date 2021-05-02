@@ -70,11 +70,12 @@ class DB:
             req: str = "SELECT famille_id FROM animaux, animaux_velages, velages_complications, velages WHERE animaux.mort_ne = 1 AND animaux.id = animaux_velages.animal_id AND animaux_velages.velage_id = velages_complications.velage_id AND velages_complications.complication_id = 6 AND velages.id = animaux_velages.velage_id"
             return cursor.execute(req).fetchall()
 
+
     def get_all_living_family(self) -> List[Tuple[int]]:
         """
         Get all animals living
         Returns:
-            List[Tuple[int]]: list of tuple with family id as unique element in string format "" of all animals living
+            List[Tuple[int]]: list of tuple with family id as unique element of all animals living
         """
         with self.db as cursor:
             req: str = "SELECT famille_id FROM animaux, animaux_velages, velages WHERE animaux.presence = 1 AND animaux.id = animaux_velages.animal_id AND velages.id = animaux_velages.velage_id"

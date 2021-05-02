@@ -29,12 +29,15 @@
 .chart-description {
     display: block;
     width: 100%;
-    text-align: center;
     margin-bottom: 20px;
 }
 
 @media only screen and (max-width: 500px) {
     .chart-container {
         height: 40vh;
+    }
+
+    .chart {
+        width: 90%
     }
 }

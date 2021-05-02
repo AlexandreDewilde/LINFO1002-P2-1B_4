@@ -14,7 +14,6 @@ const toggleChartsDisposition = (dispositionName) => {
     if (dispositionName === "list")
     {
         document.documentElement.style.setProperty("--chart-width", "90%");
-        document.documentElement.style.setProperty("--chart-height", "50vh");
         // This function is needed to resized the chart
         resizeCharts();
     }
@@ -22,7 +21,6 @@ const toggleChartsDisposition = (dispositionName) => {
     else if (dispositionName === "grid")
     {
         document.documentElement.style.setProperty("--chart-width", "48%");
-        document.documentElement.style.setProperty("--chart-height", "40vh");
         // Resize the graphs
         resizeCharts();
     }
@@ -160,35 +158,35 @@ function prematureDeathsByMonths(deaths){
     * Non fini !
 */
 
-function prematureDeathsByFam(family_dead, family_alive){
+function prematureDeathsByFam(labels, family_dead, family_alive){
     
-    var barChartData = 
+    let prematureDeathByFamData = 
     {
-        labels: ['Galak','Réglisse','Myrtille','Vincent','Panade','Rubarbe','Bimbo','Nostalgie','Nubia','Margot','Nourrice','Orange','Olympe','Ford','Ruby','Cote d’Or','Sorbet','Paupiette','Nounou','Odile','Oasis','Potache','Nash','Mirabelle','Pascaline','Renaud','Neslie','Ayham','Minnie','Narcisse','Maserati','Origami','Paula','Mamamia','Peluche','Nima','Clarabelle','Onyx','Papyrus','Nancy','Mushroom','Nassma','Ferraris','Madona','Jonquille','Citron','Pissenlit','Pink','Météorite','Saturne','Madi','Moon','Meringue','Ovalie','Oreo','Majestic','Bessie','Micheline','Mazda','Mastar','Ciboulette','Motorola','Plume','Panda','Agapanthe','Nitendo','Provence','Céline','Perle','Nora','Moka','Poire','Olive','Pomme','Ophélie','Norma','Lindt','Mercedes','Trompette','Ocarina','Oméga','Betty','Pupuce','Pamela','Blondie','Citroenne','Nya','Ninon','Mélasse','Nolvenn','Orage','KitKat','Moussaka','Summer','Nice','Tournesol','Noisette','Ophia','Paquerette','Banane','Midas','Ninette','Mystic','Caprice','Dottie','Origan','Mimosa','Ollande','Naomi','Snow','Star','Numerobis','Mosaic','Nuggets','Sonette','Kinder','Lotus','Nadine','Benoît','Orchidée','Okaly','Malaisie','Milka','Nela','Penny','Rustique','Fraise','Normande','Blanche','Moutarde','Macaroni','Moselle','Mandala','Margueritte','Neptune','Papaye','Maite','Naza','Toblerone','Rosette','Iris','Nairobi','Mina','Raymonde','Otaria','Sauterelle','Sidonie','Prune','Bleuet','Noire','Magma','Sky','Fiesta','Neda','Jeep','Nouille','Lila','Nina','Nathalia','Tonnerre','Lavande','Naya','Nilla','Hélène','Unknown'],
+        labels: labels,
         datasets: [
             {
                 type: 'bar',
                 label: 'Décès Prématurés',
                 id: "y-axis-0",
-                backgroundColor: "green",
+                backgroundColor: "blue",
                 data: family_dead,
             },
             {
                 type: 'bar',
                 label: 'Vivants',
                 id: "y-axis-0",
-                backgroundColor: "blue",
+                backgroundColor: "lightblue",
                 data: family_alive,
             }
         ]
     };
   
   
-    var ctx = document.getElementById("premature-deaths-by-family");
-    var ch = new Chart(ctx, 
+    let prematureDeathsByFamCanvas = document.getElementById("premature-deaths-by-family");
+    let prematureDeathsByFamChart = new Chart(prematureDeathsByFamCanvas, 
         {
             type: 'bar',
-            data: barChartData,
+            data: prematureDeathByFamData,
             options: 
             {
                 title: 
@@ -212,7 +210,8 @@ function prematureDeathsByFam(family_dead, family_alive){
                     }]
                 }
             }
-        });
+        }
+    );
 }
 
 // Listen the button to change the graph disposition
@@ -223,6 +222,7 @@ document.getElementById("grid-icon").addEventListener("click", () => toggleChart
 const birth_moon_label = graph_data["birth_moon_label"];
 const birth_moon_by_years = graph_data["birth_moon_by_years"];
 const deaths = graph_data["deaths"];
+const family_labels = graph_data["family_labels"];
 const family_dead = graph_data["family_dead"];
 const family_alive = graph_data["family_alive"];
 
@@ -237,17 +237,17 @@ addGraphHTML(
 addGraphHTML(
     "premature-deaths-by-months",
     "Morts Prématurés par mois",
-    "Un graphique des morts prématurés en fonction des mois de l'année, une veau mort prématurérément est un veau qui est né prématurément et mort dans les semaines après celle-ci", 
+    "Un graphique des morts prématurés en fonction des mois de l'année, une veau mort prématurérément est un veau qui est né prématurément et mort dans les semaines après celle-ci\nLe graphique permet de voir si il y a une tendance dans les morts prématurés, si certaines occurent plus pendant certains mois que d'autres.", 
     "/static/images/death.jpg"
 );
 addGraphHTML(
     "premature-deaths-by-family",
     "Morts Prématurés par familles",
-    "Un graphique des décès prématurés et des vivants pour chaque familles",
+    "Un graphique des décès prématurés et des vivants pour chaque familles, cela permet de voir si certaines familles ont des tendances génétique à avoir des morts prématurés, pour information une mort prématuré est une mort ou le veau est né prématurément et il meurt dans les semaines après la naissances",
     "/static/images/vaches.jpg"
 );
 
 // Plot the graphs
 let moonChart = plotBirthChartMoon(birth_moon_by_years, birth_moon_label);
 prematureDeathsByMonths(deaths);
-prematureDeathsByFam(family_dead, family_alive);
+prematureDeathsByFam(family_labels, family_dead, family_alive);

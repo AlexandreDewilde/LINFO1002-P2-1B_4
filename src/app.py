@@ -1,7 +1,7 @@
 import sqlite3
 import os
 import pathlib
-from typing import Dict, Union
+from typing import Dict, Union, List, Tuple
 
 from flask import Flask
 from flask import render_template, redirect, url_for
@@ -25,14 +25,17 @@ def index():
     """
     Render the index html page
     """
-    families: List[tuple] = db.get_families()
+    # Fetch data for charts
+    families: List[Tuple[int, str]] = db.get_families()
     families_ids: List[int] = [family[0] for family in families]
+    families_names: List[str] = [family[1] for family in families]
     births_moon_cycle_by_year: Dict[int, str] = moon_phases_by_years(db.get_births())
 
     graph_data: Dict[str, Union[list, dict]] = {
         "birth_moon_label": list(moon_phase_dict.values()),
         "birth_moon_by_years": births_moon_cycle_by_year,
         "deaths": list_deces_prematures(db.get_all_premature_deaths()),
+        "family_labels<": families_names,
         "family_dead": list_family(families_ids, db.get_all_premature_deaths_family()),
         "family_alive": list_family(families_ids, db.get_all_living_family()),
     }
