@@ -35,7 +35,7 @@ def index():
         "birth_moon_label": list(moon_phase_dict.values()),
         "birth_moon_by_years": births_moon_cycle_by_year,
         "deaths": list_deces_prematures(db.get_all_premature_deaths()),
-        "family_labels<": families_names,
+        "family_labels": families_names,
         "family_dead": list_family(families_ids, db.get_all_premature_deaths_family()),
         "family_alive": list_family(families_ids, db.get_all_living_family()),
     }
