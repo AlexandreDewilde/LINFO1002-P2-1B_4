@@ -11,7 +11,7 @@ from db import DB
 from moon_phases import moon_phases_by_years
 from moon_phase import moon_phase_dict
 from premature_death import list_deces_prematures
-from fam_pre import list_deces_prematures_family
+from fam_pre import list_family
 
 
 app: Flask = Flask(__name__)
@@ -33,7 +33,8 @@ def index():
         "birth_moon_label": list(moon_phase_dict.values()),
         "birth_moon_by_years": births_moon_cycle_by_year,
         "deaths": list_deces_prematures(db.get_all_premature_deaths()),
-        "family": list_deces_prematures_family(families_ids, db.get_all_premature_deaths_family())
+        "family_dead": list_family(families_ids, db.get_all_premature_deaths_family()),
+        "family_alive": list_family(families_ids, db.get_all_living_family()),
     }
     return render_template("index.html", graph_data=graph_data)
 
