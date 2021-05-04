@@ -67,12 +67,14 @@ const plotBirthChartMoon = (data, labels) => {
     let ctxBirthChartMoon = document.getElementById('birth-chart-moon').getContext('2d');
     let datasets = [];
     for (let [key, value] of Object.entries(data)) {
+        color = `rgba(${(255-(key-1990)/30 * 150 )}, 100, ${((key-1990)/30 * 150 + 105)}, 1.0)`
         datasets.push({
             label: key,
             data: value,
             stack: `${data.length}`,
-            backgroundColor: "#388E8E",
-            borderColor: "#388E8E",
+            backgroundColor: color,
+            borderColor: color,
+            hoverBackgroundColor: color
         });
     }
 
@@ -120,7 +122,7 @@ function prematureDeathsByMonths(deaths){
             type: 'bar',
             label: 'Décès Prématurés',
             id: "y-axis-0",
-            backgroundColor: "red",
+            backgroundColor: "rgba(255, 100, 100)",
             data: deaths
         }]
     };
@@ -168,14 +170,14 @@ function prematureDeathsByFam(labels, family_dead, family_alive){
                 type: 'bar',
                 label: 'Décès Prématurés',
                 id: "y-axis-0",
-                backgroundColor: "blue",
+                backgroundColor: "rgba(50, 50, 200)",
                 data: family_dead,
             },
             {
                 type: 'bar',
                 label: 'Vivants',
                 id: "y-axis-0",
-                backgroundColor: "lightblue",
+                backgroundColor: "rgba(120, 120, 255)",
                 data: family_alive,
             }
         ]
