@@ -9,8 +9,8 @@ from flask import render_template, redirect, url_for
 from config import DEBUG
 from db import DB
 from moon_phases import moon_phases_by_years
-from moon_phase import moon_phase_dict
-from premature_death import list_deces_prematures
+from moon_phase import moon_phases_lst
+from occurences import occurences_months_by_year
 from fam_pre import list_family
 
 
@@ -29,16 +29,20 @@ def index():
     families: List[Tuple[int, str]] = db.get_families()
     families_ids: List[int] = [family[0] for family in families]
     families_names: List[str] = [family[1] for family in families]
+
     births_moon_cycle_by_year: Dict[int, str] = moon_phases_by_years(db.get_births())
 
     graph_data: Dict[str, Union[list, dict]] = {
-        "birth_moon_label": list(moon_phase_dict.values()),
+        "birth_moon_labels": moon_phases_lst,
         "birth_moon_by_years": births_moon_cycle_by_year,
-        "deaths": list_deces_prematures(db.get_all_premature_deaths()),
-        "family_labels": families_names,
-        "family_dead": list_family(families_ids, db.get_all_premature_deaths_family()),
-        "family_alive": list_family(families_ids, db.get_all_living_family()),
+
+        "premature_deaths_montly_by_months": occurences_months_by_year(db.get_all_premature_deaths()),
+
+        "families_labels": families_names,
+        "families_deaths": list_family(families_ids, db.get_all_premature_deaths_family()),
+        "families_alives": list_family(families_ids, db.get_all_living_family()),
     }
+
     return render_template("index.html", graph_data=graph_data)
 
 

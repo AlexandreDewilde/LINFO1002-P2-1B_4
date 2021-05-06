@@ -5,6 +5,7 @@ function resizeCharts() {
     }
 }
 
+
 /**
   * Change the disposition of graph in the page
   * @param {string} dispositionName - The new disposition to adopt : list or grid
@@ -26,10 +27,14 @@ const toggleChartsDisposition = (dispositionName) => {
     }
 }
 
+
 /**
     * Add a container for graph in the html in the charts container section
     * @param {string} chartName- Name of the chart, it will be the name of the canvas containing the graph
     * @param {string} chartTitle - Name of the chart, to display
+    * @param {string} chartDescription - Description of the chart
+    * @param {string} path to the image to represent the chart
+    * @param {string} chartConclusion, a conclusion for the chart
 */
 const addGraphHTML = (chartName, chartTitle, chartDescription, chartImgDescriptionPath, chartConclusion) => {
     // Get cards section
@@ -43,12 +48,12 @@ const addGraphHTML = (chartName, chartTitle, chartDescription, chartImgDescripti
                 <span class="card-sub-description">${chartDescription}</span>
             </div>
         </section>
-    </a>
-    `
+    </a>`
+
     // Get the first chart container in the page
     let chartContainerElement = document.querySelector(".charts-container");
     chartContainerElement.innerHTML += `
-    <section id="${chartName}-section" class="chart">
+    <section id="${chartName}-section" class="chart-section">
         <h2 class="chart-title">${chartTitle}</h2>
         <div class="chart-description">
             <h3>Description</h3>
@@ -72,9 +77,10 @@ const addGraphHTML = (chartName, chartTitle, chartDescription, chartImgDescripti
 const plotBirthChartMoon = (data, labels) => {
     // Get the canvas where to plot the chart
     let ctxBirthChartMoon = document.getElementById('birth-chart-moon').getContext('2d');
+
     let datasets = [];
     for (let [key, value] of Object.entries(data)) {
-        color = `rgba(${(255-(key-1990)/30 * 150 )}, 100, ${((key-1990)/30 * 150 + 105)}, 1.0)`
+        let color = `rgba(${(255-(key-1990)/30 * 150 )}, 100, ${((key-1990)/30 * 150 + 105)}, 1.0)`;
         datasets.push({
             label: key,
             data: value,
@@ -117,27 +123,36 @@ const plotBirthChartMoon = (data, labels) => {
             
         }
     };
-    // Plot the graph
+    // Plot the graph and return it
     return new Chart(ctxBirthChartMoon, birthMoonChartParam);
 }
 
+
 /**
     * Plot a graph of the premature deaths per months
-    * @param {list} deaths - List of the prematures deaths for each months, for instance [0, 2, ......] corresponds to 0 death in january, 2 deaths in february, ....
+    * @param {map} prematureDeathsMontlyByYears - map of the prematureDeath with years as key and value a list of deaths by months with idx corresponding to the months in order
  */
-function prematureDeathsByMonths(deaths){
+function prematureDeathsByMonths(prematureDeathsMontlyByYears){
+
+    let datasets = [];
+    for (let [key, value] of Object.entries(prematureDeathsMontlyByYears))
+    {
+        let color = `rgba(${(255-(key-1990)/30 * 150)}, 150, ${((key-1990)/30 * 50 + 205)}, 1.0)`;
+        datasets.push({
+            label: key,
+            data: value,
+            stack: `${prematureDeathsMontlyByYears.length}`,
+            backgroundColor: color,
+            borderColor: color,
+            hoverBackgroundColor: color
+        });
+    }
     
     let barChartData = {
         labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
-        datasets: [{
-            type: 'bar',
-            label: 'Décès Prématurés',
-            id: "y-axis-0",
-            backgroundColor: "rgba(255, 100, 100)",
-            data: deaths
-        }]
+        datasets: datasets
     };
-
+    
 
     let ctxPrematureDeathsByMonths = document.getElementById("premature-deaths-by-months");
     return new Chart(ctxPrematureDeathsByMonths, {
@@ -166,9 +181,9 @@ function prematureDeathsByMonths(deaths){
 
 /**
     * Plot a graph of the premature deaths per family
+    * @param {list} labels - list of families names
     * @param {list} family_dead - List of the deaths for each family
     * @param {list} family_alive - List of the living for each family
-    * Non fini !
 */
 
 function prematureDeathsByFam(labels, family_dead, family_alive){
@@ -196,7 +211,7 @@ function prematureDeathsByFam(labels, family_dead, family_alive){
   
   
     let prematureDeathsByFamCanvas = document.getElementById("premature-deaths-by-family");
-    let prematureDeathsByFamChart = new Chart(prematureDeathsByFamCanvas, 
+    return new Chart(prematureDeathsByFamCanvas, 
         {
             type: 'bar',
             data: prematureDeathByFamData,
@@ -227,17 +242,18 @@ function prematureDeathsByFam(labels, family_dead, family_alive){
     );
 }
 
+
 // Listen the button to change the graph disposition
 document.getElementById("list-icon").addEventListener("click", () => toggleChartsDisposition("list"));
 document.getElementById("grid-icon").addEventListener("click", () => toggleChartsDisposition("grid"));
 
 
-const birth_moon_label = graph_data["birth_moon_label"];
-const birth_moon_by_years = graph_data["birth_moon_by_years"];
-const deaths = graph_data["deaths"];
-const family_labels = graph_data["family_labels"];
-const family_dead = graph_data["family_dead"];
-const family_alive = graph_data["family_alive"];
+const birth_moon_labels = graph_data["birth_moon_labels"];
+const birthMoonByYears = graph_data["birth_moon_by_years"];
+const prematureDeathsMontlyByYears = graph_data["premature_deaths_montly_by_months"];
+const familiesLabels = graph_data["families_labels"];
+const familiesDeaths = graph_data["families_deaths"];
+const familiesAlives = graph_data["families_alives"];
 
 
 // Adding graph to html, (adding section with a title and a canvas for the graph)
@@ -262,6 +278,6 @@ addGraphHTML(
 );
 
 // Plot the graphs
-let moonChart = plotBirthChartMoon(birth_moon_by_years, birth_moon_label);
-prematureDeathsByMonths(deaths);
-prematureDeathsByFam(family_labels, family_dead, family_alive);
+let moonChart = plotBirthChartMoon(birthMoonByYears, birth_moon_labels);
+prematureDeathsByMonths(prematureDeathsMontlyByYears);
+prematureDeathsByFam(familiesLabels, familiesDeaths, familiesAlives);

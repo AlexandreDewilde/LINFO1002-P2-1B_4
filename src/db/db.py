@@ -41,7 +41,7 @@ class DB:
         """
         For each animals in the database get its birthdate if its born in the farm
         Returns:
-            List[str]: list of all animals birthdates as string in "dd:mm:yyyy" format
+            List[str]: list of all animals birthdates as string in "dd/mm/yyyy" format
         """
         with self.db as cursor:
             # This requests fetch all birth dates for each animal
@@ -49,22 +49,22 @@ class DB:
             return [row[0] for row in cursor.execute(req).fetchall()]
 
 
-    def get_all_premature_deaths(self) -> List[Tuple[str]]:
+    def get_all_premature_deaths(self) -> List[str]:
         """
         Get all animals death prematurely
         Returns:
-            List[Tuple[str]]: list of tuple with date of births as unique element in string format "dd:mm:yyyy" of all animals death prematurely
+            List[str]: list date of births in string format "dd/mm/yyyy" of all animals death prematurely
         """
         with self.db as cursor:
             req: str = "SELECT date FROM animaux, animaux_velages, velages_complications, velages WHERE animaux.mort_ne = 1 AND animaux.id = animaux_velages.animal_id AND animaux_velages.velage_id = velages_complications.velage_id AND velages_complications.complication_id = 6 AND velages.id = animaux_velages.velage_id"
-            return cursor.execute(req).fetchall()
+            return [el[0] for el in cursor.execute(req).fetchall()]
     
 
     def get_all_premature_deaths_family(self) -> List[Tuple[int]]:
         """
         Get all animals death prematurely
         Returns:
-            List[Tuple[int]]: list of tuple with family id as unique element in string format "" of all animals death prematurely
+            List[Tuple[int]]: list of tuple with family id as unique element in string format "dd/mm/yyyy" of all animals death prematurely
         """
         with self.db as cursor:
             req: str = "SELECT famille_id FROM animaux, animaux_velages, velages_complications, velages WHERE animaux.mort_ne = 1 AND animaux.id = animaux_velages.animal_id AND animaux_velages.velage_id = velages_complications.velage_id AND velages_complications.complication_id = 6 AND velages.id = animaux_velages.velage_id"

@@ -22,6 +22,9 @@ moon_phase_dict = {
     7: "Dernier croissant"
 }
 
+# python 3.6>= dict are sorted by insertions
+moon_phases_lst = list(moon_phase_dict.values())
+
 dec = decimal.Decimal
 
 def position(now=None): 
