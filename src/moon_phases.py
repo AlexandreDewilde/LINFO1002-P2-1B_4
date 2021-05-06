@@ -8,7 +8,7 @@ def moon_phases_by_years(data: List[str]) -> Dict[int, list]:
     """
     Create list occurences of moon phases for each years with a list of dates sorted represented as string and formates as "dd:mm:yy"  
     Args:
-        data: a list of date as string formated as "dd:mm:yyyy" sorted
+        data: a list of date as string formated as "dd/mm/yyyy" sorted
     Returns:
         Dict[int, list]: Return a dict with years as key and as value a list with the number of births by moon phases
     """

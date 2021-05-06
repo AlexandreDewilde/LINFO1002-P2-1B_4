@@ -58,13 +58,13 @@ const addGraphHTML = (chartName, chartTitle, chartDescription, chartImgDescripti
         <div class="chart-description">
             <h3>Description</h3>
             ${chartDescription}
-        </div>        
-        <div class="chart-container">
-            <canvas id="${chartName}"></canvas>
         </div>
         <div class="chart-conclusion">
             <h3>Conclusion</h3>
             ${chartConclusion}
+        </div>
+        <div class="chart-container">
+            <canvas id="${chartName}"></canvas>
         </div>
     </section>`;
 }
@@ -162,6 +162,13 @@ function prematureDeathsByMonths(prematureDeathsMontlyByYears){
             title: {
                 display: false,
                 text: "Décès Prématurés - Durant L’année"
+            },
+            legend: {
+                labels: {
+                    filter: () => {
+                        return document.documentElement.clientWidth > 500;
+                    }
+                }
             },
             responsive: true,
             maintainAspectRatio: false,
