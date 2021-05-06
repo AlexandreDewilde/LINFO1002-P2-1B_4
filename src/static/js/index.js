@@ -208,7 +208,7 @@ function prematureDeathsByFam(labels, family_dead, family_alive){
             },
             {
                 type: 'bar',
-                label: 'Vivants',
+                label: 'Présents dans la ferme vivant',
                 id: "y-axis-0",
                 backgroundColor: "rgba(120, 120, 255)",
                 data: family_alive,

@@ -27,8 +27,14 @@ def index():
     """
     # Fetch data for charts
     families: List[Tuple[int, str]] = db.get_families()
+    families_dict = {family_id: name for family_id, name in families}
     families_ids: List[int] = [family[0] for family in families]
     families_names: List[str] = [family[1] for family in families]
+
+
+    premature_deaths_by_families = list_family(families_ids, db.get_all_premature_deaths_family())
+    families_labels = [families_dict[family_id] for family_id in premature_deaths_by_families.keys()]
+    families_premature_deaths = list(premature_deaths_by_families.values())
 
     births_moon_cycle_by_year: Dict[int, str] = moon_phases_by_years(db.get_births())
 
@@ -38,9 +44,9 @@ def index():
 
         "premature_deaths_montly_by_months": occurences_months_by_year(db.get_all_premature_deaths()),
 
-        "families_labels": families_names,
-        "families_deaths": list_family(families_ids, db.get_all_premature_deaths_family()),
-        "families_alives": list_family(families_ids, db.get_all_living_family()),
+        "families_labels": families_labels,
+        "families_deaths": families_premature_deaths,
+        "families_alives": list(list_family(families_ids, db.get_all_living_family()).values()),
     }
 
     return render_template("index.html", graph_data=graph_data)
