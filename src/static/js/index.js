@@ -94,6 +94,10 @@ const plotBirthChartMoon = (data, labels) => {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            title: {
+                display: false,
+                text: "Naissances selon la phase lunaire"
+            },
             legend: {
                 labels: {
                     filter: () => {
@@ -141,7 +145,7 @@ function prematureDeathsByMonths(deaths){
         data: barChartData,
         options: {
             title: {
-                display: true,
+                display: false,
                 text: "Décès Prématurés - Durant L’année"
             },
             responsive: true,
