@@ -1,9 +1,9 @@
 def list_deces_prematures(list_birth):
     """
     Args:
-        list_birth (List[tuple]): une liste de tuple contenant une date comme premier élément sous le format "dd:mm:yyyy"
+        list_birth (List[tuple]): list of prematures deaths containing date with format: "dd:mm:yyyy"
     Returns:
-        Une liste contenant le nombre de morts prématurés
+        A list containing the number of premature deaths by months
     """
     dic = {}
     for i in range(len(list_birth)):

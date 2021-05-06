@@ -1,6 +1,7 @@
 :root {
     --chart-width: 90%;
     --chart-height: 40vh;
+    --chart-description-height: 20%;
 }
 
 
@@ -13,12 +14,15 @@
 
 .chart-container {
     height: var(--chart-height);
+    width: 100%;
 }
 
 
 .chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: var(--chart-width);
-    
 }
 
 .chart-title {
@@ -27,12 +31,29 @@
 
 
 .chart-description {
-    display: block;
-    width: 100%;
+    box-shadow: 0 0 1px;
+    padding: 5px;
+    width: 95%;
+    height: var(--chart-description-height);
+    overflow: scroll;
+    margin-top: 10px;
     margin-bottom: 20px;
 }
 
+
+.chart-conclusion {
+    width: 95%;
+    text-align: center;
+    padding-bottom: 20px;
+    box-shadow: 0 0 1px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
 @media only screen and (max-width: 500px) {
+    .chart-description {
+        height: 170px;
+    }
     .chart-container {
         height: 40vh;
     }

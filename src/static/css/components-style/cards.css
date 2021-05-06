@@ -49,14 +49,14 @@
 .card-sub-description {
     margin-top: 10px;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
 @media only screen and (max-width: 900px) {
     .card-sub-description {
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 1;
     }
 } 
 

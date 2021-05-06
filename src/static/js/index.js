@@ -31,7 +31,7 @@ const toggleChartsDisposition = (dispositionName) => {
     * @param {string} chartName- Name of the chart, it will be the name of the canvas containing the graph
     * @param {string} chartTitle - Name of the chart, to display
 */
-const addGraphHTML = (chartName, chartTitle, chartDescription, chartImgDescriptionPath) => {
+const addGraphHTML = (chartName, chartTitle, chartDescription, chartImgDescriptionPath, chartConclusion) => {
     // Get cards section
     let cardsSection = document.querySelector(".cards");
     cardsSection.innerHTML += `
@@ -49,10 +49,17 @@ const addGraphHTML = (chartName, chartTitle, chartDescription, chartImgDescripti
     let chartContainerElement = document.querySelector(".charts-container");
     chartContainerElement.innerHTML += `
     <section id="${chartName}-section" class="chart">
-        <h3 class="chart-title">${chartTitle}</h3>
-        <span class="chart-description">${chartDescription}</span>        
+        <h2 class="chart-title">${chartTitle}</h2>
+        <div class="chart-description">
+            <h3>Description</h3>
+            ${chartDescription}
+        </div>        
         <div class="chart-container">
-            <canvas id="${chartName}" with="100%"></canvas>
+            <canvas id="${chartName}"></canvas>
+        </div>
+        <div class="chart-conclusion">
+            <h3>Conclusion</h3>
+            ${chartConclusion}
         </div>
     </section>`;
 }
@@ -233,19 +240,20 @@ const family_alive = graph_data["family_alive"];
 addGraphHTML(
     "birth-chart-moon",
     "Naissance selon le cycle lunaire",
-    "Un graphique des naissances en fonction de la phase de la lune, ce graph est la pour confirmer ou infirmer une croyance selon laquelle, il y aurai plus de naissances en phase de pleine lune",
-    "/static/images/moon.jpg"
+    "<p>Ceci est un graphique des naissances par années en fonction de la phase de la lune</p> <p>Le graphique tente de confirmer / infirmer une croyance selon laquelle, il y aurait plus de naissances en phase de pleine lune </p>",
+    "/static/images/moon.jpg",
+    "En conclusion, on ne peut pas conclure qu'il y a plus de naissances en fonction de certaines phases de la lune"
 );
 addGraphHTML(
     "premature-deaths-by-months",
     "Morts Prématurés par mois",
-    "Un graphique des morts prématurés en fonction des mois de l'année, une veau mort prématurérément est un veau qui est né prématurément et mort dans les semaines après celle-ci\nLe graphique permet de voir si il y a une tendance dans les morts prématurés, si certaines occurent plus pendant certains mois que d'autres.", 
+    "<p>Ceci est un graphique des morts prématurés en fonction des mois de l'année pour toutes les années, le but de ce graphique est de constater si il y a une tendance dans les morts prématurés, si cela arrivent plus souvent certains mois que d'autres.</p>\n <p>NB: un veau mort prématurément est un veau qui est né avec la complication \"né prématurément\" et qui est mort dans les semaines après sa naissance</p>", 
     "/static/images/death.jpg"
 );
 addGraphHTML(
     "premature-deaths-by-family",
     "Morts Prématurés par familles",
-    "Un graphique des décès prématurés et des vivants pour chaque familles, cela permet de voir si certaines familles ont des tendances génétique à avoir des morts prématurés, pour information une mort prématuré est une mort ou le veau est né prématurément et il meurt dans les semaines après la naissances",
+    "<p>Ceci est un graphique des décès prématurés et des vivants pour chaque familles</p><p>Le graphique tente de voir si certaines familles ont des tendances génétique à avoir des morts prématurés</p> <p>NB: un veau mort prématurément est un veau qui est né avec la complication \"né prématurément\" et qui est mort dans les semaines après sa naissance</p>",
     "/static/images/vaches.jpg"
 );
 

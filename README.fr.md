@@ -16,13 +16,13 @@ cd  LINFO1002-P2-1B_4
 
 ### Installer les dépendances (si flask est déja installé vous pouvez passer cette étape)
 
-Le projet est construit au dessus du framework flask, il vous faut donc installer cette dépendance, dans le dossier principal du projet lancer la commande suivante dans votre invite de commande dans le dossier du projet:
+Le projet est construit au dessus du framework flask, il vous faut donc installer cette dépendance, dans le dossier principal du projet lancez la commande suivante dans votre invite de commande dans le dossier du projet:
 
 ```
 pip install -r requirements.txt
 ```
 
-### Crée la base de données (le fichier de la base de données est déja présent, vous pouvez passer cette étape)
+### Créer la base de données (si le fichier de la database est déja présent, vous pouvez passer cette étape)
 
 
 Pour lancer la création de la DB, il faut vous rendre dans le dossier src/db
@@ -30,7 +30,7 @@ Pour lancer la création de la DB, il faut vous rendre dans le dossier src/db
 cd src/db
 ```
 
-Ensuite on peut lancer le script de création comme ceci et puis retourn dans le dossier src:
+Ensuite on peut lancer le script de création comme ceci et puis retourner dans le dossier src:
 
 ```
 python create_db.py
@@ -40,7 +40,7 @@ cd ..
 
 ### Lancer le projet
 
-Pour lancer le projet, il suffite d'éxécuter le fichier app.py dans le dossier src
+Pour lancer le projet, il suffit d'éxécuter le fichier app.py dans le dossier src
 
 ```
 python app.py
@@ -50,27 +50,27 @@ python app.py
 
 ```
 LINFO1002-P2
-├── captures_d_ecran // Dossier contenant les captures d'ecran
-├── README.fr.md // Le readme en markdown version FR
+├── captures_d_ecran // Dossier contenant les captures d'ecrans
+├── README.fr.md
 ├── README.md
 ├── readme.txt
-├── requirements.txt // Fichier contenant les dépendances du projets
-├── src // Touts le projet se trouve dans ce dossier
-│   ├── app.py // Le fichier principal, c'est celui qu'il faut lancer pour executer le projet
-│   ├── config.py // Fichier de config contenant les variables principal du projet
-│   ├── db // Touts les fichiers relié à la database
-│   │   ├── 1002-sql-data // Dossier des fichiers d'insertion dans la base de données
-│   │   ├── create_db.py // fichier qui init la base de données, insere les données et génère les types de chaque animaux
+├── requirements.txt // Dépendances du projet
+├── src // Le projet se trouve dans ce dossier
+│   ├── app.py // Le fichier principal, c'est celui qu'il faut lancer pour exécuter le projet
+│   ├── config.py // Fichier de config contenant les variables global du projet
+│   ├── db // Fichiers liés à la database
+│   │   ├── 1002-sql-data // Dossier des fichiers d'insertion dans la base de données -> données par le prof
+│   │   ├── create_db.py // fichier qui init la database, insère les données et génère les types de chaque animaux
 │   │   ├── create_db.sql // Script sql de la creation de la db, des tables et colonnes
 │   │   ├── database.db // La base de données sql
-│   │   ├── db.py // Interface pour la base de données, se trouve toutes les fonctions utilitaire
+│   │   ├── db.py // Interface pour la base de données, où se trouve toutes les fonctions utilitaire
 │   │   ├── generate_race.py // Contient la fonction de génération des types pour chaque animaux et les fonctions pour aider dans cette création
-│   │   ├── __init__.py
-│   ├── fam_pre.py // Fichier contenant la fonction permettant la génaration du graph sur les morts prématurés par famille
-│   ├── moon_phase.py // Fichier ou se trouver les fonctions utilitaire de calcul pour les phases de la lune
-│   ├── moon_phases.py // Fichier contenant la fonction qui permetts à partir d'une liste de date de générer un dinctionnaire par années en fonction des phases de la lune
-│   ├── premature_death.py // Fichier contenant la fonction pour le graph 4.1 des morts en fonction des mois de l'année
-│   ├── static // Touts les fichiers static du site
+│   │   ├── __init__.py // Lors des imports
+│   ├── fam_pre.py // Fichier contenant la fonction permettant la génération du graph sur les morts prématurés par famille
+│   ├── moon_phase.py // Fichier des fonctions utilitaire de calcul pour les phases de la lune
+│   ├── moon_phases.py // Fichier de la fonction qui permets à partir d'une liste de date de générer un dictionnaire par années en fonction des phases de la lune
+│   ├── premature_death.py // Fichier contenant la fonction pour le graph 4.1 des morts en fonction des mois de l'années
+│   ├── static // Les fichiers static du site, js css et images
 │   │   ├── chartjs // Les fichiers de la librairie chartjs
 │   │   │   ├── Chart.bundle.min.js
 │   │   │   ├── Chart.min.css
