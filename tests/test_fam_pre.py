@@ -22,7 +22,7 @@ class TestListFamily(unittest.TestCase):
     def test_list_family(self):
         res = list_family(self.families_ids, self.samples)
         
-        self.assertEqual(type(res), list, f"Function list_family not return a list")
+        self.assertEqual(type(res), dict, f"Function list_family not return a list")
 
         self.assertEqual(len(res), 165, f"Function list_family doesn't return a list of len 165 but of lenght {len(res)}")
 
