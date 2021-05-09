@@ -275,7 +275,8 @@ addGraphHTML(
     "premature-deaths-by-months",
     "Morts Prématurés par mois",
     "<p>Ceci est un graphique des morts prématurés en fonction des mois de l'année pour toutes les années, le but de ce graphique est de constater si il y a une tendance dans les morts prématurés, si cela arrivent plus souvent certains mois que d'autres.</p>\n <p>NB: un veau mort prématurément est un veau qui est né avec la complication \"né prématurément\" et qui est mort dans les semaines après sa naissance</p>", 
-    "/static/images/death.jpg"
+    "/static/images/death.jpg",
+    "En conclusion, on peut conclure que le nombre de décès prématurés sont plus nombreux dans les deux saisons 'L'été' et 'L'automne'"
 );
 addGraphHTML(
     "premature-deaths-by-family",
