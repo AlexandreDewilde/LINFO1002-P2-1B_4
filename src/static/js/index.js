@@ -266,22 +266,22 @@ const familiesAlives = graph_data["families_alives"];
 // Adding graph to html, (adding section with a title and a canvas for the graph)
 addGraphHTML(
     "birth-chart-moon",
-    "Naissance selon le cycle lunaire",
+    "Les naissances selon le cycle lunaire",
     "<p>Ceci est un graphique des naissances par années en fonction de la phase de la lune</p> <p>Le graphique tente de confirmer / infirmer une croyance selon laquelle, il y aurait plus de naissances en phase de pleine lune </p>",
     "/static/images/moon.jpg",
-    "En conclusion, on ne peut pas conclure qu'il y a plus de naissances en fonction de certaines phases de la lune"
+    "En conclusion, on ne peut pas conclure qu'il y a plus de naissance en fonction de certaines phases de la lune"
 );
 addGraphHTML(
     "premature-deaths-by-months",
     "Morts Prématurés par mois",
-    "<p>Ceci est un graphique des morts prématurés en fonction des mois de l'année pour toutes les années, le but de ce graphique est de constater si il y a une tendance dans les morts prématurés, si cela arrivent plus souvent certains mois que d'autres.</p>\n <p>NB: un veau mort prématurément est un veau qui est né avec la complication \"né prématurément\" et qui est mort dans les semaines après sa naissance</p>", 
+    "<p>Ceci est un graphique des morts prématurés en fonction des mois de l'année pour toutes les années. Le but de ce graphique est de constater s'il y a une tendance dans les morts prématurés, si cela arrive plus souvent certains mois que d'autres.</p>\n <p>NB: un veau mort prématurément est un veau qui est né avec la complication \"né prématurément\" et qui est mort dans les semaines après sa naissance</p>", 
     "/static/images/death.jpg",
-    "En conclusion, on ne peut conclure car il y a peu de données mais on remarque une tendance un nombre de décès prématurés sont plus nombreux dans les deux saisons 'L'été' et 'L'automne'"
+    "En conclusion, on ne peut conclure car il y n'y pas assez de données mais on peut remarquer une tendance avec un nombre de décès prématurés plus élevé en été et à l'automne"
 );
 addGraphHTML(
     "premature-deaths-by-family",
-    "Morts Prématurés par familles",
-    "<p>Ceci est un graphique des décès prématurés et des vivants pour chaque familles</p><p>Le graphique tente de voir si certaines familles ont des tendances génétique à avoir des morts prématurés</p> <p>NB: un veau mort prématurément est un veau qui est né avec la complication \"né prématurément\" et qui est mort dans les semaines après sa naissance</p>",
+    "Morts Prématurés en fonction des familles",
+    "<p>Ceci est un graphique des décès prématurés et des vivants en fonction des familles</p><p>Le graphique tente de voir si certaines familles ont des tendances génétiques à avoir des morts prématurés</p> <p>NB: un veau mort prématurément est un veau qui est né avec la complication \"né prématurément\" et qui est mort dans les semaines après sa naissance</p>",
     "/static/images/vaches.jpg",
     "En conclusion, on peut conclure parmis les familles comptants un assez grand nombre d'individus que les nouveaux-nés de la famille Onyx ont plus tendance à être victime de décès prématurés"
 );
