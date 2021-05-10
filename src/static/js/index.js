@@ -208,7 +208,7 @@ function prematureDeathsByFam(labels, family_dead, family_alive){
             },
             {
                 type: 'bar',
-                label: 'Présents dans la ferme vivant',
+                label: 'Animaux vivants',
                 id: "y-axis-0",
                 backgroundColor: "rgba(120, 120, 255)",
                 data: family_alive,
@@ -276,13 +276,14 @@ addGraphHTML(
     "Morts Prématurés par mois",
     "<p>Ceci est un graphique des morts prématurés en fonction des mois de l'année pour toutes les années, le but de ce graphique est de constater si il y a une tendance dans les morts prématurés, si cela arrivent plus souvent certains mois que d'autres.</p>\n <p>NB: un veau mort prématurément est un veau qui est né avec la complication \"né prématurément\" et qui est mort dans les semaines après sa naissance</p>", 
     "/static/images/death.jpg",
-    "En conclusion, on peut conclure que le nombre de décès prématurés sont plus nombreux dans les deux saisons 'L'été' et 'L'automne'"
+    "En conclusion, on ne peut conclure car il y a peu de données mais on remarque une tendance un nombre de décès prématurés sont plus nombreux dans les deux saisons 'L'été' et 'L'automne'"
 );
 addGraphHTML(
     "premature-deaths-by-family",
     "Morts Prématurés par familles",
     "<p>Ceci est un graphique des décès prématurés et des vivants pour chaque familles</p><p>Le graphique tente de voir si certaines familles ont des tendances génétique à avoir des morts prématurés</p> <p>NB: un veau mort prématurément est un veau qui est né avec la complication \"né prématurément\" et qui est mort dans les semaines après sa naissance</p>",
-    "/static/images/vaches.jpg"
+    "/static/images/vaches.jpg",
+    "On voit de légère tendances pour certaines familles mais trop peu pour conclure"
 );
 
 // Plot the graphs

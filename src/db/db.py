@@ -78,5 +78,5 @@ class DB:
             List[Tuple[int]]: list of tuple with family id as unique element of all animals living
         """
         with self.db as cursor:
-            req: str = "SELECT famille_id FROM animaux, animaux_velages, velages WHERE animaux.presence = 1 AND animaux.id = animaux_velages.animal_id AND velages.id = animaux_velages.velage_id"
+            req: str = "SELECT famille_id FROM animaux, animaux_velages, velages WHERE animaux.mort_ne = 0 AND animaux.decede = 0 AND animaux.id = animaux_velages.animal_id AND velages.id = animaux_velages.velage_id"
             return cursor.execute(req).fetchall()
