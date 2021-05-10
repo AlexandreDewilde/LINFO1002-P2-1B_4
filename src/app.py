@@ -11,7 +11,7 @@ from db import DB
 from moon_phases import moon_phases_by_years
 from moon_phase import moon_phases_lst
 from occurences import occurences_months_by_year
-from fam_pre import list_family
+from occurences_by_family import list_occurences_family
 
 
 app: Flask = Flask(__name__)
@@ -32,7 +32,7 @@ def index():
     families_names: List[str] = [family[1] for family in families]
 
 
-    premature_deaths_by_families = list_family(families_ids, db.get_all_premature_deaths_family())
+    premature_deaths_by_families = list_occurences_family(families_ids, db.get_all_premature_deaths_family())
     families_labels = [families_dict[family_id] for family_id in premature_deaths_by_families.keys()]
     families_premature_deaths = list(premature_deaths_by_families.values())
 
@@ -46,7 +46,7 @@ def index():
 
         "families_labels": families_labels,
         "families_deaths": families_premature_deaths,
-        "families_alives": list(list_family(families_ids, db.get_all_living_family()).values()),
+        "families_alives": list(list_occurences_family(families_ids, db.get_all_living_family()).values()),
     }
 
     return render_template("index.html", graph_data=graph_data)
