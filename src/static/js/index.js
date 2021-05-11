@@ -283,7 +283,7 @@ addGraphHTML(
     "Morts Prématurés en fonction des familles",
     "<p>Ceci est un graphique des décès prématurés et des vivants en fonction des familles</p><p>Le graphique tente de voir si certaines familles ont des tendances génétiques à avoir des morts prématurés</p> <p>NB: un veau mort prématurément est un veau qui est né avec la complication \"né prématurément\" et qui est mort dans les semaines après sa naissance</p>",
     "/static/images/vaches.jpg",
-    "En conclusion, on peut conclure parmis les familles comptants un assez grand nombre d'individus que les nouveaux-nés de la famille Onyx ont plus tendance à être victime de décès prématurés"
+    "En conclusion, on peut conclure parmi les familles comptants un assez grand nombre d'individus que les nouveaux-nés de la famille Onyx ont plus tendance à être victime de décès prématurés"
 );
 
 // Plot the graphs
